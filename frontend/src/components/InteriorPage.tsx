@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/content/site";
@@ -39,7 +40,7 @@ export default function InteriorPage({
               <span className="eyebrow">SARC Consulting · Dakar</span>
               <h2 className="serif">{site.pageCta.title}</h2>
               <p>{site.pageCta.text}</p>
-              <Link className="button" href="/contact">{site.pageCta.button} ↗</Link>
+              <Link className="button" href="/contact">{site.pageCta.button} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
             </div>
           </section>
         )}

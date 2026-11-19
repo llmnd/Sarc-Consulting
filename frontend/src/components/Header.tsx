@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 
 export default function Header() {
@@ -76,7 +77,7 @@ export default function Header() {
           onClick={()=>setOpen(v=>!v)}><span/><span/></button>
         <nav className="main-nav" id="navigation" aria-label="Navigation principale">
           {site.nav.map(([label,path]) => <Link className={pathname===path ? "active" : ""} href={path} key={path}>{label}</Link>)}
-          <Link className={`nav-cta ${pathname==="/contact" ? "active" : ""}`} href="/contact">Parlons de vos enjeux ↗</Link>
+          <Link className={`nav-cta ${pathname==="/contact" ? "active" : ""}`} href="/contact">Parlons de vos enjeux <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
         </nav>
       </header>
       <nav
@@ -88,7 +89,7 @@ export default function Header() {
         onClick={(event)=>{if(event.target===event.currentTarget)setOpen(false);}}
       >
         {site.nav.map(([label,path],index) => <Link className={pathname===path ? "active" : ""} style={{transitionDelay:open ? `${index*55}ms` : "0ms"}} href={path} key={path} onClick={()=>setOpen(false)}>{label}</Link>)}
-        <Link className="nav-cta" href="/contact" onClick={()=>setOpen(false)}>Parlons de vos enjeux ↗</Link>
+        <Link className="nav-cta" href="/contact" onClick={()=>setOpen(false)}>Parlons de vos enjeux <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
       </nav>
     </>
   );

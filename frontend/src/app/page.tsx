@@ -3,6 +3,7 @@ import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { images } from "@/config/images";
 import { site } from "@/content/site";
 
@@ -26,7 +27,7 @@ export default function Home() {
             <h1 className="serif">La conformité,<br /><span>en mouvement.</span></h1>
             <p>{site.hero.subtitle}</p>
             <div className="hero-actions">
-              <a className="button" href="#expertises">Découvrir nos expertises ↗</a>
+              <a className="button" href="#expertises">Découvrir nos expertises <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></a>
               <a className="button button-outline" href="#contact">Nous contacter</a>
             </div>
           </div>
@@ -60,7 +61,7 @@ export default function Home() {
           <Reveal className="cabinet-copy">
             <h2 className="serif">{site.cabinet.title}</h2>
             <p>{site.cabinet.text}</p>
-            <a className="text-link" href="#approche">Notre manière d’accompagner ↗</a>
+            <a className="text-link" href="#approche">Notre manière d’accompagner <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></a>
           </Reveal>
         </section>
         <section className="section team-section" id="equipe">

@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ContactForm() {
   const [status,setStatus] = useState<"idle"|"loading"|"success"|"error">("idle");
@@ -40,7 +41,7 @@ export default function ContactForm() {
       <div className="field"><label htmlFor="subject">Votre sujet *</label><select id="subject" name="subject" required defaultValue=""><option value="" disabled>Choisir un sujet</option><option>Conformité réglementaire</option><option>Gestion des obligations</option><option>Transformation digitale</option><option>Autre demande</option></select></div>
       <div className="field full"><label htmlFor="message">Quelques mots sur votre besoin *</label><textarea id="message" name="message" required minLength={10} maxLength={3000} /></div>
       <div className="honeypot" aria-hidden="true"><label htmlFor="website">Site web</label><input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
-      <div className="form-bottom"><small>Vos informations sont utilisées uniquement pour répondre à votre demande.</small><button type="submit" disabled={status==="loading"}>{status==="loading" ? "Envoi…" : "Envoyer mon message ↗"}</button></div>
+      <div className="form-bottom"><small>Vos informations sont utilisées uniquement pour répondre à votre demande.</small><button type="submit" disabled={status==="loading"}>{status==="loading" ? "Envoi…" : <>Envoyer mon message <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></>}</button></div>
       <p className="form-message" role="status" aria-live="polite">{message}</p>
     </form>
   );

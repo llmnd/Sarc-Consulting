@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowUp } from "lucide-react";
 
 export default function SiteFooter() {
   return (
@@ -11,7 +12,7 @@ export default function SiteFooter() {
       <div className="footer-links">
         <Link href="/engagements">Engagements</Link>
         <Link href="/contact">Contact</Link>
-        <Link href="/">Retour à l’accueil ↑</Link>
+        <Link href="/">Retour à l’accueil <ArrowUp className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
       </div>
     </footer>
   );
