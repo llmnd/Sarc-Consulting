@@ -17,6 +17,11 @@ export const site = {
     { value: "4", label: "étapes d’accompagnement", note: "à confirmer" },
     { value: "1", label: "objectif : la confiance", note: "à confirmer" },
   ],
+  teamMembers: [
+    { name: "Profil 1", role: "Fonction à renseigner", bio: "Présentation à compléter à réception des informations du membre.", portrait: null },
+    { name: "Profil 2", role: "Fonction à renseigner", bio: "Présentation à compléter à réception des informations du membre.", portrait: null },
+    { name: "Profil 3", role: "Fonction à renseigner", bio: "Présentation à compléter à réception des informations du membre.", portrait: null },
+  ],
   cabinet: {
     title: "Rendre les exigences complexes plus lisibles.",
     text: "SARC Consulting accompagne les organisations dans la gestion de leurs obligations réglementaires. Nous associons expertise, méthode et outils digitaux pour aider les équipes à mieux comprendre leurs enjeux, structurer leurs pratiques et avancer avec confiance.",

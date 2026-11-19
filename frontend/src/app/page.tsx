@@ -32,7 +32,7 @@ export default function Home() {
           </div>
           <div className="hero-visual">
             <div className="hero-image">
-              <Image src={images.hero.src} alt={images.hero.alt} fill priority sizes="(max-width:760px) 100vw,50vw" style={{objectFit:"contain", padding:"20px"}} />
+              <Image src={images.hero.src} alt={images.hero.alt} fill priority quality={90} sizes="(max-width:760px) 100vw,50vw" />
             </div>
           </div>
           <a className="hero-scroll" href="#cabinet">Défiler pour découvrir</a>
@@ -43,16 +43,57 @@ export default function Home() {
           ))}
         </div>
         <section className="section container cabinet" id="cabinet">
-          <Reveal><span className="eyebrow">Le cabinet</span></Reveal>
+          <Reveal className="cabinet-aside">
+            <span className="eyebrow">Le cabinet</span>
+            <div className="cabinet-visual" aria-hidden="true">
+              <span className="cabinet-visual-ring" />
+              <svg viewBox="0 0 220 220" fill="none">
+                <rect x="54" y="30" width="112" height="148" rx="5" stroke="currentColor" strokeWidth="2" />
+                <path d="M78 66h64M78 88h48M78 110h34" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <circle cx="151" cy="151" r="37" fill="#f2b632" />
+                <path d="m135 151 11 11 22-25" stroke="#0b1f3a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="cabinet-visual-caption">Exigences comprises <i /> Actions concrètes</span>
+              <span className="cabinet-visual-index">01</span>
+            </div>
+          </Reveal>
           <Reveal className="cabinet-copy">
             <h2 className="serif">{site.cabinet.title}</h2>
             <p>{site.cabinet.text}</p>
             <a className="text-link" href="#approche">Notre manière d’accompagner ↗</a>
           </Reveal>
         </section>
+        <section className="section team-section" id="equipe">
+          <div className="container">
+            <Reveal className="team-heading">
+              <span className="eyebrow">Notre équipe</span>
+              <h2 className="serif">Des expertises complémentaires, au plus près de vos enjeux.</h2>
+              <p>Des profils engagés pour éclairer vos enjeux de conformité et faire avancer vos projets aux côtés de vos équipes.</p>
+            </Reveal>
+            <div className="team-grid">
+              {site.teamMembers.map((member, index) => (
+                <Reveal className="team-card-wrap" key={member.name}>
+                  <details className="team-card">
+                    <summary>
+                      {member.portrait ? (
+                        <Image className="team-avatar" src={member.portrait} alt={`Portrait de ${member.name}`} width={160} height={160} sizes="(max-width:760px) 152px,160px" />
+                      ) : (
+                        <span className="team-avatar team-avatar-placeholder" role="img" aria-label={`Portrait à ajouter pour ${member.name}`}>{String(index + 1).padStart(2, "0")}</span>
+                      )}
+                      <h3>{member.name}</h3>
+                      <span className="team-role">{member.role}</span>
+                      <span className="team-more"><span>En savoir plus</span><span className="team-more-icon" aria-hidden="true">+</span></span>
+                    </summary>
+                    <div className="team-bio"><p>{member.bio}</p></div>
+                  </details>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
         <section className="section container expertise" id="expertises">
           <Reveal className="section-heading"><span className="eyebrow">Nos expertises</span><h2 className="serif">La rigueur au service de l’action.</h2><p>Des accompagnements conçus autour de vos obligations, de vos équipes et de votre réalité opérationnelle.</p></Reveal>
-          <Reveal className="expertise-figure"><Image src={images.expertises.src} alt={images.expertises.alt} width={1600} height={900} loading="lazy" /></Reveal>
+          <Reveal className="expertise-figure"><Image src={images.expertises.src} alt={images.expertises.alt} width={768} height={1024} sizes="(max-width:760px) 100vw,86vw" loading="lazy" /></Reveal>
           <div className="expertise-grid">
             {site.expertises.map(([title, text], i) => (
               <Reveal className="expertise-card" key={title}><span className="card-num">{String(i+1).padStart(2,"0")}</span><h3>{title}</h3><p>{text}</p></Reveal>

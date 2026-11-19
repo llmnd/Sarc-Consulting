@@ -1,8 +1,17 @@
 import type { NextConfig } from "next";
 
-const backendUrl = process.env.BACKEND_URL || "http://127.0.0.1:8000";
+const configuredBackendUrl = process.env.BACKEND_URL?.trim();
+
+if (process.env.VERCEL === "1" && !configuredBackendUrl) {
+  throw new Error("BACKEND_URL must be set in the Vercel frontend project before deploying.");
+}
+
+const backendUrl = (configuredBackendUrl || "http://127.0.0.1:8000").replace(/\/+$/, "");
 
 const nextConfig: NextConfig = {
+  images: {
+    qualities: [75, 90],
+  },
   async rewrites() {
     return [{ source: "/api/:path*", destination: `${backendUrl}/api/:path*` }];
   },

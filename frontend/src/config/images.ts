@@ -1,10 +1,10 @@
 export const images = {
   hero: {
-    src: "/images/sarc-compliance-illustration.png",
-    alt: "Illustration d’une consultante vérifiant une liste d’exigences réglementaires",
+    src: "/images/sarc-hero-team.jpg",
+    alt: "Trois consultants échangent autour d’une tablette dans un bureau",
   },
   expertises: {
-    src: "/images/sarc-expertises.png",
-    alt: "Vue illustrée des six domaines d’accompagnement de SARC Consulting",
+    src: "/images/sarc-expertise-workshop.jpg",
+    alt: "Une équipe travaille ensemble autour d’une tablette sur ses objectifs",
   },
 } as const;

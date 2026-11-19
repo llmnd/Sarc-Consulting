@@ -20,7 +20,7 @@ export default function ExpertisesPage() {
           <h2 className="serif">{page.sectionTitle}</h2>
         </Reveal>
         <Reveal className="expertise-figure">
-          <Image src={images.expertises.src} alt={images.expertises.alt} width={1600} height={900} />
+          <Image src={images.expertises.src} alt={images.expertises.alt} width={768} height={1024} sizes="(max-width:760px) 100vw,86vw" />
         </Reveal>
         <div className="page-card-grid">
           {site.expertises.map(([title,summary],index)=>(
