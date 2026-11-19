@@ -6,7 +6,7 @@ export default function Reveal({ children, className }: { children: ReactNode; c
   const reduce = useReducedMotion();
   return (
     <motion.div
-      className={className}
+      className={["reveal", className].filter(Boolean).join(" ")}
       initial={reduce ? false : { opacity: 0, y: 22 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}

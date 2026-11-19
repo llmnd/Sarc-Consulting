@@ -18,10 +18,12 @@ export default function Header() {
     const progress = document.getElementById("reading-progress");
     lastY.current = 0;
     setHidden(false);
+    const canAutoHide = window.matchMedia("(min-width: 761px)").matches;
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(pathname !== "/" || y > 30);
-      setHidden(y > 180 && y > lastY.current);
+      if (canAutoHide) setHidden(y > 180 && y > lastY.current);
+      else setHidden(false);
       lastY.current = y;
       const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (progress) {

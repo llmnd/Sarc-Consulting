@@ -191,9 +191,11 @@ main:focus { outline:none; }
 @media (max-width:760px) {
   :root { --gutter:20px; }
   html { scroll-padding-top:70px; }
-  .site-header { height:76px; }
+  .site-header { height:76px; transform:none!important; transition:background .2s ease,color .2s ease; }
   .site-header.scrolled { height:70px; }
+  .site-header.hidden { transform:none; }
   .site-header.menu-open { background:var(--navy); }
+  .reveal { opacity:1!important; transform:none!important; }
   .menu-toggle { display:block; }
   .main-nav { display:none; }
   .mobile-menu { position:fixed; z-index:70; inset:0; display:flex; flex-direction:column; align-items:stretch; justify-content:center; gap:0; overflow-y:auto; padding:100px var(--gutter) 36px; background:var(--navy); color:white; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(-8px); transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s; }
