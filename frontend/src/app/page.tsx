@@ -75,13 +75,19 @@ export default function Home() {
                 <Reveal className="team-card-wrap" key={member.name}>
                   <details className="team-card">
                     <summary>
-                      {member.portrait ? (
-                        <Image className="team-avatar" src={member.portrait} alt={`Portrait de ${member.name}`} width={160} height={160} sizes="(max-width:760px) 152px,160px" />
-                      ) : (
-                        <span className="team-avatar team-avatar-placeholder" role="img" aria-label={`Portrait à ajouter pour ${member.name}`}>{String(index + 1).padStart(2, "0")}</span>
-                      )}
-                      <h3>{member.name}</h3>
-                      <span className="team-role">{member.role}</span>
+                      <span className="team-profile-visual">
+                        {member.portrait ? (
+                          <Image className="team-avatar" src={member.portrait} alt={`Portrait de ${member.name}`} width={160} height={160} sizes="(max-width:760px) 152px,160px" />
+                        ) : (
+                          <span className="team-avatar team-avatar-placeholder" role="img" aria-label={`Portrait à ajouter pour ${member.name}`}>{String(index + 1).padStart(2, "0")}</span>
+                        )}
+                        <span className="team-profile-overlay" aria-hidden="true">
+                          <span className="team-profile-name">{member.name}</span>
+                          <span className="team-profile-role">{member.role}</span>
+                        </span>
+                      </span>
+                      <h3 className="team-profile-accessible-name">{member.name}</h3>
+                      <span className="team-profile-accessible-role">{member.role}</span>
                       <span className="team-more"><span>En savoir plus</span><span className="team-more-icon" aria-hidden="true">+</span></span>
                     </summary>
                     <div className="team-bio"><p>{member.bio}</p></div>
