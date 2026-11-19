@@ -47,7 +47,7 @@ main:focus { outline:none; }
 .menu-toggle.open span:first-child { transform:translateY(3.5px) rotate(45deg); }
 .menu-toggle.open span:last-child { transform:translateY(-3.5px) rotate(-45deg); }
 
-.hero { position:relative; min-height:820px; height:100svh; max-height:900px; display:grid; grid-template-columns:1.05fr .95fr; overflow:hidden; background:var(--navy); color:white; }
+.hero { position:relative; min-height:680px; height:min(100svh,760px); max-height:760px; display:grid; grid-template-columns:1.05fr .95fr; overflow:hidden; background:var(--navy); color:white; }
 .hero-copy { position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; padding:130px 4vw 90px var(--gutter); }
 .hero-copy .eyebrow { color:var(--gold-soft); margin-bottom:28px; }
 .hero h1 { max-width:680px; margin:0; font-size:clamp(58px,5.8vw,84px); line-height:.98; }
@@ -64,6 +64,9 @@ main:focus { outline:none; }
 .hero-scroll { position:absolute; z-index:3; bottom:32px; left:var(--gutter); display:flex; align-items:center; gap:12px; color:rgba(255,255,255,.55); font-size:9px; letter-spacing:.16em; text-transform:uppercase; }
 .hero-scroll:before { content:""; width:34px; height:1px; background:var(--gold); }
 .hero-scroll:after { content:""; position:absolute; bottom:-8px; left:46px; width:1px; height:18px; background:var(--gold-soft); animation:scrollHint 1.8s infinite; }
+@media (min-width:761px) {
+  .hero-copy { transform:translateY(-60px); }
+}
 @keyframes scrollHint { 50% { transform:translateY(7px); opacity:.3; } }
 
 .stats { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--line); }
