@@ -1,0 +1,27 @@
+# Dependencies and build output
+**/node_modules/
+**/.next/
+**/out/
+**/dist/
+**/build/
+**/.vercel/
+coverage/
+*.tsbuildinfo
+
+# Python environments and generated files
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.ruff_cache/
+
+# Local environment variables and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db

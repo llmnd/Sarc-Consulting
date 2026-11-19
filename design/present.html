@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Proposition de collaboration — SARC Consulting</title>
+<style>
+:root{--ink:#101e2b;--ink2:#152635;--paper:#f5f3ee;--card:#fffefa;--tx:#101e2b;--mu:#64707a;--gold:#c5a577;--gl:#dfc7a2;--gd:#8d744f;--line:rgba(16,30,43,.14);
+--serif:"Iowan Old Style","Baskerville","Palatino Linotype","Book Antiqua",Georgia,serif;--sans:"Aptos","Segoe UI","Helvetica Neue",Arial,sans-serif;--g:clamp(22px,7vw,110px);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0e1923;--card:#16273a;--tx:#f3efe6;--mu:#9aa6af;--line:rgba(255,255,255,.16);--gd:#dfc7a2}}
+:root[data-theme="dark"]{--paper:#0e1923;--card:#16273a;--tx:#f3efe6;--mu:#9aa6af;--line:rgba(255,255,255,.16);--gd:#dfc7a2}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--tx);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+.serif,h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.03em}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--gd);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor}
+section{padding:100px var(--g)}
+h2{font-size:clamp(36px,5vw,58px);line-height:1.06;margin:18px 0 0;max-width:760px}
+.lead{max-width:560px;color:var(--mu);font-size:17px;margin:20px 0 0}
+.hero{background:var(--ink);color:#fffefa;padding:0 var(--g);min-height:min(760px,100svh);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-180px;top:80px;width:520px;height:520px;border:1px solid rgba(197,165,119,.25);border-radius:50%;box-shadow:0 0 0 46px rgba(197,165,119,.04),0 0 0 92px rgba(197,165,119,.03)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:34px 0;border-bottom:1px solid rgba(255,255,255,.14);position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:13px;font-weight:700;letter-spacing:.16em;font-size:14px}
+.mark{width:38px;height:38px;border:1px solid rgba(223,199,162,.7);display:grid;place-items:center;color:var(--gl);font-family:var(--serif);font-size:18px}
+.top span.d{color:rgba(255,255,255,.6);font-size:12px;letter-spacing:.1em}
+.hero-main{padding:70px 0;position:relative;z-index:1}
+.hero .eyebrow{color:var(--gl)}
+h1{font-size:clamp(50px,7.4vw,98px);line-height:.98;margin:26px 0 0;max-width:900px}
+h1 em{font-style:normal;color:var(--gl)}
+.hero p{max-width:480px;color:rgba(255,255,255,.76);font-size:18px;margin:28px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:12px 44px;padding:26px 0 34px;border-top:1px solid rgba(255,255,255,.14);position:relative;z-index:1;font-size:13px;color:rgba(255,255,255,.75)}
+.meta small{display:block;color:rgba(255,255,255,.45);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:6vw;margin-top:48px}
+.path{padding:30px 0 0;border-top:1px solid var(--line)}
+.path h3{font-size:27px;margin:0 0 10px}.path p{color:var(--mu);margin:0}
+.dark{background:var(--ink2);color:#fffefa}.dark .eyebrow{color:var(--gl)}.dark .lead{color:rgba(255,255,255,.62)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+.budget-copy{max-width:760px;margin-top:22px;color:rgba(255,255,255,.78);font-size:17px;line-height:1.85}
+.budget-copy p{margin:0 0 15px}
+.price-toggle{display:inline-flex;align-items:center;gap:12px;margin-top:12px;padding:15px 19px;color:var(--ink);border:1px solid var(--gl);background:var(--gl);font:700 13px var(--sans);cursor:pointer;transition:background .2s,transform .2s}
+.price-toggle:hover{background:#fffefa;transform:translateY(-2px)}
+.price-toggle:focus-visible{outline:2px solid #fffefa;outline-offset:4px}
+.price-status{min-height:1.5em;margin:12px 0 0;color:rgba(255,255,255,.64);font-size:13px}
+.plan{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16);padding:34px 30px;display:flex;flex-direction:column}
+.plan.hl{background:var(--gl);color:var(--ink);border-color:var(--gl)}
+.plan .n{font-family:var(--serif);font-size:14px;color:var(--gl)}.plan.hl .n{color:#7a6240}
+.plan h3{font-size:28px;margin:22px 0 8px}
+.plan .for{font-size:14px;opacity:.72;margin:0 0 24px;min-height:48px}
+.price{font-family:var(--serif);font-size:34px;letter-spacing:-.03em;line-height:1.1;padding:20px 0;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);color:var(--gl)}
+.plan.hl .price{color:var(--ink);border-color:rgba(16,30,43,.2)}
+.price small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.04em;opacity:.7;margin-top:4px}
+.plan ul{list-style:none;margin:24px 0 0;padding:0;font-size:15px}
+.plan li{padding:8px 0 8px 22px;position:relative}
+.plan li::before{content:"";position:absolute;left:0;top:19px;width:10px;height:1px;background:var(--gl)}
+.plan.hl li::before{background:var(--ink)}
+.pages{display:grid;grid-template-columns:repeat(3,1fr);margin-top:48px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.pg{padding:26px 26px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pg span{font-family:var(--serif);color:var(--gd);font-size:14px}
+.pg h3{font-size:23px;margin:16px 0 8px}.pg p{margin:0;font-size:14px;color:var(--mu)}
+.feat{display:grid;grid-template-columns:repeat(2,1fr);gap:0 6vw;margin-top:44px}
+.f{padding:22px 0;border-top:1px solid var(--line);display:flex;gap:18px}
+.f i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:11px}
+.f h3{font-size:20px;margin:0 0 4px}.f p{margin:0;font-size:14px;color:var(--mu)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:52px}
+.st{padding:28px 24px 0 0;border-top:1px solid rgba(255,255,255,.22);position:relative}
+.st::before{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.st span{font-family:var(--serif);color:var(--gl);font-size:15px}
+.st h3{font-size:24px;margin:22px 0 10px}.st p{margin:0;font-size:14px;color:rgba(255,255,255,.7)}
+table{width:100%;max-width:760px;border-collapse:collapse;margin-top:44px}
+td{padding:20px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{font-family:var(--serif);font-size:23px;letter-spacing:-.02em}
+td:first-child small{display:block;font-family:var(--sans);font-size:13px;color:var(--mu);letter-spacing:0;margin-top:2px}
+td:last-child{text-align:right;font-family:var(--serif);font-size:23px;color:var(--gd);white-space:nowrap;padding-left:18px}
+.note{max-width:760px;margin-top:30px;padding:22px 26px;background:var(--card);border-left:3px solid var(--gold);font-size:15px;color:var(--mu)}
+.note b{color:var(--tx)}
+.cond{display:grid;grid-template-columns:repeat(3,1fr);gap:6vw;margin-top:44px}
+.cond h3{font-size:22px;margin:0 0 8px;padding-top:20px;border-top:1px solid var(--line)}.cond p{margin:0;font-size:14px;color:var(--mu)}
+.end{background:var(--ink);color:#fffefa;text-align:left}
+.end h2{max-width:700px}.end p{max-width:480px;color:rgba(255,255,255,.72);font-size:17px;margin-top:22px}
+.end .eyebrow{color:var(--gl)}
+footer{background:#0c1721;color:rgba(255,255,255,.5);font-size:12px;padding:26px var(--g);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:900px){.plans,.cond{grid-template-columns:1fr}.pages{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr;gap:36px 20px}.plan .for{min-height:0}}
+@media(max-width:640px){section{padding:76px var(--g)}.two,.feat,.pages{grid-template-columns:1fr}.hero::after{display:none}td:first-child,td:last-child{font-size:19px}.steps{grid-template-columns:1fr}}
+@media print{.hero{min-height:0}section{padding:50px var(--g)}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<div class="top"><div class="brand"><span class="mark">S</span>SARC CONSULTING</div><span class="d">Novembre 2026</span></div>
+<div class="hero-main">
+<span class="eyebrow">Proposition de collaboration</span>
+<h1 class="serif">Une présence digitale à la hauteur de <em>SARC Consulting.</em></h1>
+<p>Une proposition claire : ce que nous construisons et comment nous pouvons avancer ensemble.</p>
+</div>
+<div class="meta"><div><small>Préparée pour</small>Aïssata · SARC Consulting</div><div><small>Lieu</small>Dakar, Sénégal</div><div><small>Objectif</small>Une première version pour mardi</div></div>
+</header>
+
+<section>
+<span class="eyebrow">Votre besoin</span>
+<h2 class="serif">Deux façons d’avancer, un seul objectif : votre image.</h2>
+<p class="lead">Nous partons de ce qui est réellement prioritaire pour vous, puis nous construisons le reste progressivement.</p>
+<div class="two">
+<div class="path"><h3>Le site vitrine</h3><p>Présenter SARC Consulting, son positionnement, ses expertises et ses services, avec une identité visuelle soignée et une navigation fluide sur ordinateur comme sur téléphone.</p></div>
+<div class="path"><h3>L’application métier</h3><p>Gérer des clients, suivre des dossiers, des obligations et des échéances, avec comptes utilisateurs, tableaux de bord et automatisations. Un projet à part, chiffré après cahier des charges.</p></div>
+</div>
+</section>
+
+<section class="dark" id="formules">
+<span class="eyebrow">Parlons budget</span>
+<h2 class="serif">Trouvons le bon équilibre pour votre projet.</h2>
+<div class="budget-copy">
+<p>Concernant le budget, mes tarifs varient en fonction de la nature du projet, de sa complexité, des fonctionnalités attendues et du niveau de personnalisation souhaité.</p>
+<p>Avant de vous communiquer une proposition chiffrée, j'aimerais savoir si vous avez déjà défini une enveloppe budgétaire pour ce projet.</p>
+<p>Cela me permettra de mieux orienter ma proposition et de trouver le meilleur équilibre entre vos attentes, les fonctionnalités prioritaires et le budget disponible.</p>
+<p>L'idée est de vous proposer quelque chose de qualitatif, adapté à vos besoins, tout en optimisant l'investissement.</p>
+</div>
+<button class="price-toggle" id="price-toggle" type="button" aria-expanded="false" aria-controls="existing-prices maintenance-prices">Vous souhaitez consulter les tarifs déjà envisagés ? <span aria-hidden="true">↗</span></button>
+<p class="price-status" id="price-status" role="status" aria-live="polite"></p>
+<div id="existing-prices" hidden>
+<div class="plans">
+<article class="plan"><span class="n">Formule 01</span><h3>Site vitrine professionnel</h3><p class="for">Pour présenter le cabinet avec élégance et crédibilité.</p>
+<div class="price">500 000 – 700 000<small>FCFA · sur mesure</small></div>
+<ul><li>Design sur mesure, aux couleurs de SARC</li><li>Pages de présentation du cabinet</li><li>Affichage parfait sur mobile</li><li>Formulaire de contact</li><li>Bonnes pratiques SEO intégrées</li><li>Mise en ligne</li></ul></article>
+<article class="plan hl"><span class="n">Formule 02</span><h3>Plateforme avancée</h3><p class="for">Pour un site plus riche, que vous pilotez en autonomie.</p>
+<div class="price">700 000 – 900 000<small>FCFA · sur mesure</small></div>
+<ul><li>Tout ce qui est inclus en formule 01</li><li>Espace d’administration</li><li>Gestion autonome des contenus</li><li>Fonctionnalités supplémentaires</li><li>Intégrations avec des services externes</li></ul></article>
+<article class="plan"><span class="n">Formule 03</span><h3>Application métier</h3><p class="for">Pour piloter vos opérations avec un outil dédié.</p>
+<div class="price">Sur devis<small>selon la complexité fonctionnelle</small></div>
+<ul><li>Cahier des charges préalable</li><li>Comptes utilisateurs et droits d’accès</li><li>Tableaux de bord et suivi</li><li>Gestion des échéances et documents</li><li>Automatisations</li></ul></article>
+</div>
+</div>
+</section>
+
+<section>
+<span class="eyebrow">Le site de la première version</span>
+<h2 class="serif">Les pages qui racontent SARC Consulting.</h2>
+<div class="pages">
+<div class="pg"><span>01</span><h3>Accueil</h3><p>Une promesse forte, vos expertises en un coup d’œil.</p></div>
+<div class="pg"><span>02</span><h3>Le cabinet</h3><p>Qui vous êtes, votre vision et votre manière de travailler.</p></div>
+<div class="pg"><span>03</span><h3>Expertises</h3><p>Conformité, obligations, transformation, accompagnement.</p></div>
+<div class="pg"><span>04</span><h3>Notre approche</h3><p>Une méthode lisible, du diagnostic à l’ancrage.</p></div>
+<div class="pg"><span>05</span><h3>Secteurs</h3><p>Les contextes dans lesquels vous intervenez.</p></div>
+<div class="pg"><span>06</span><h3>Contact</h3><p>Un formulaire simple pour ouvrir la conversation.</p></div>
+</div>
+<div class="feat">
+<div class="f"><i></i><div><h3>Design et expérience</h3><p>Une identité visuelle cohérente avec l’image que vous voulez renvoyer.</p></div></div>
+<div class="f"><i></i><div><h3>Performance et sécurité</h3><p>Un site rapide, des accès maîtrisés, des données protégées.</p></div></div>
+<div class="f"><i></i><div><h3>Référencement naturel</h3><p>Structure, titres, descriptions et indexation, pour être trouvé sur Google.</p></div></div>
+<div class="f"><i></i><div><h3>Évolutivité</h3><p>Une base propre pour ajouter des fonctionnalités sans tout reprendre.</p></div></div>
+</div>
+</section>
+
+<section class="dark">
+<span class="eyebrow">Déroulement</span>
+<h2 class="serif">De la discussion à la mise en ligne.</h2>
+<div class="steps">
+<div class="st"><span>01</span><h3>Cahier des charges</h3><p>Objectifs, pages, priorités de la V1, délais et proposition financière détaillée.</p></div>
+<div class="st"><span>02</span><h3>Validation</h3><p>Accord sur le périmètre, le budget et les modalités, puis démarrage officiel.</p></div>
+<div class="st"><span>03</span><h3>Première version</h3><p>Une V1 pertinente, présentable et aboutie pour votre rencontre de mardi.</p></div>
+<div class="st"><span>04</span><h3>Évolutions</h3><p>Ajustements et nouvelles fonctionnalités, par phases et par priorités.</p></div>
+</div>
+</section>
+
+<section>
+<span class="eyebrow">Après la mise en ligne</span>
+<h2 class="serif">Maintenance et accompagnement.</h2>
+<p class="lead">Mises à jour, sauvegardes, surveillance, corrections et assistance, en forfait mensuel selon votre besoin.</p>
+<div id="maintenance-prices" hidden>
+<table>
+<tr><td>Maintenance essentielle<small>Mises à jour, sauvegardes, surveillance</small></td><td>75 000 FCFA / mois</td></tr>
+<tr><td>Maintenance et suivi avancés<small>Corrections, petites améliorations, suivi renforcé</small></td><td>100 000 FCFA / mois</td></tr>
+<tr><td>Accompagnement technique<small>Assistance et conseil sur vos outils</small></td><td>125 000 – 175 000 FCFA / mois</td></tr>
+<tr><td>SEO continu<small>Stratégie de contenu et suivi de visibilité</small></td><td>Sur devis</td></tr>
+</table>
+<div class="note"><b>Frais annexes, à votre nom.</b> Le nom de domaine (environ 10 000 à 25 000 FCFA par an) et l’hébergement (environ 60 000 à 180 000 FCFA par an) appartiennent à SARC Consulting. Je vous accompagne dans le choix, la configuration et la mise en ligne, et vous communique les frais avant tout achat.</div>
+</div>
+</section>
+
+<section class="dark">
+<span class="eyebrow">Nos principes</span>
+<h2 class="serif">Un cadre clair pour avancer sereinement.</h2>
+<div class="cond" style="color:#fffefa">
+<div><h3>Périmètre défini</h3><p>Chaque mission démarre avec un périmètre et des livrables écrits, pour que nous ayons la même vision.</p></div>
+<div><h3>Devis et acompte</h3><p>Le démarrage suit la validation du cahier des charges, du devis et le versement d’un acompte.</p></div>
+<div><h3>Sans promesse excessive</h3><p>Le référencement initial pose de bonnes bases, sans garantir une position précise sur Google.</p></div>
+</div>
+</section>
+
+<section class="end">
+<span class="eyebrow">Prochaine étape</span>
+<h2 class="serif">Formalisons ensemble, dès demain.</h2>
+<p>Après notre échange, je vous envoie le cahier des charges complet avec la proposition financière. Merci pour votre confiance : j’espère que ce sera le début d’une belle collaboration.</p>
+</section>
+
+<footer><span>SARC Consulting · Proposition de collaboration</span><span>Dakar, Sénégal · Novembre 2026</span></footer>
+<script>
+const priceToggle = document.getElementById("price-toggle");
+const priceSections = [
+  document.getElementById("existing-prices"),
+  document.getElementById("maintenance-prices")
+];
+const priceStatus = document.getElementById("price-status");
+
+priceToggle.addEventListener("click", () => {
+  const showPrices = priceToggle.getAttribute("aria-expanded") !== "true";
+  priceToggle.setAttribute("aria-expanded", String(showPrices));
+  priceSections.forEach((section) => { section.hidden = !showPrices; });
+  priceToggle.firstChild.textContent = showPrices
+    ? "Masquer les tarifs affichés "
+    : "Vous souhaitez consulter les tarifs déjà envisagés ? ";
+  priceStatus.textContent = showPrices
+    ? "Les tarifs déjà envisagés sont affichés dans les sections Formules et Maintenance."
+    : "Les tarifs sont masqués.";
+});
+</script>
+</body>
+</html>
