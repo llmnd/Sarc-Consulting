@@ -93,7 +93,19 @@ export default function Home() {
         </section>
         <section className="section container expertise" id="expertises">
           <Reveal className="section-heading"><span className="eyebrow">Nos expertises</span><h2 className="serif">La rigueur au service de l’action.</h2><p>Des accompagnements conçus autour de vos obligations, de vos équipes et de votre réalité opérationnelle.</p></Reveal>
-          <Reveal className="expertise-figure"><Image src={images.expertises.src} alt={images.expertises.alt} width={768} height={1024} sizes="(max-width:760px) 100vw,86vw" loading="lazy" /></Reveal>
+          <Reveal className="expertise-symbol">
+            <div className="expertise-symbol-art" aria-hidden="true">
+              <span className="expertise-symbol-orbit" />
+              <svg viewBox="0 0 240 240" fill="none">
+                <path d="M120 25 181 48v51c0 47-26 82-61 103-35-21-61-56-61-103V48l61-23Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" />
+                <path d="M92 91h56M92 111h35" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                <circle cx="151" cy="151" r="31" fill="#f2b632" />
+                <path d="m137 151 10 10 19-22" stroke="#0b1f3a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="expertise-symbol-index">02</span>
+              <span className="expertise-symbol-caption">Rigueur <i /> Confiance <i /> Action</span>
+            </div>
+          </Reveal>
           <div className="expertise-grid">
             {site.expertises.map(([title, text], i) => (
               <Reveal className="expertise-card" key={title}><span className="card-num">{String(i+1).padStart(2,"0")}</span><h3>{title}</h3><p>{text}</p></Reveal>

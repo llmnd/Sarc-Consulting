@@ -109,6 +109,16 @@ main:focus { outline:none; }
 .section-heading { max-width:760px; margin-bottom:48px; }
 .section-heading p { max-width:540px; color:var(--text); line-height:1.8; }
 .expertise .section-heading p { color:rgba(255,255,255,.62); }
+.expertise-symbol { width:min(100%,620px); margin:0 auto 50px; }
+.expertise-symbol-art { position:relative; display:grid; min-height:300px; place-items:center; overflow:hidden; border:1px solid rgba(11,31,58,.12); background:linear-gradient(135deg,#f3f0e9,#fffefa); color:var(--navy); }
+.expertise-symbol-orbit { position:absolute; width:220px; aspect-ratio:1; border:1px solid rgba(11,31,58,.13); border-radius:50%; }
+.expertise-symbol-orbit:before,.expertise-symbol-orbit:after { position:absolute; content:""; border:1px solid rgba(11,31,58,.1); border-radius:50%; }
+.expertise-symbol-orbit:before { inset:16px; }
+.expertise-symbol-orbit:after { inset:-18px; border-color:rgba(242,182,50,.35); }
+.expertise-symbol-art svg { position:relative; z-index:1; width:132px; height:auto; filter:drop-shadow(0 10px 12px rgba(11,31,58,.08)); }
+.expertise-symbol-index { position:absolute; top:22px; right:24px; color:#9a7d50; font-family:"Playfair Display",serif; font-size:12px; }
+.expertise-symbol-caption { position:absolute; bottom:20px; display:flex; align-items:center; gap:9px; padding:10px 14px; background:white; color:var(--navy); font-size:10px; font-weight:600; box-shadow:0 6px 24px rgba(11,31,58,.08); }
+.expertise-symbol-caption i { width:4px; height:4px; border-radius:50%; background:var(--gold); }
 .expertise-grid { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(255,255,255,.18); border-left:1px solid rgba(255,255,255,.18); }
 .expertise-card { position:relative; min-height:280px; padding:28px; border-right:1px solid rgba(255,255,255,.18); border-bottom:1px solid rgba(255,255,255,.18); transition:.35s; }
 .expertise-card:hover { background:rgba(255,255,255,.045); transform:translateY(-3px); }
@@ -217,6 +227,11 @@ main:focus { outline:none; }
   .team-bio p { font-size:12px; }
   .team-card summary { padding:26px 20px 20px; }
   .expertise-grid { grid-template-columns:1fr; }
+  .expertise-symbol { margin-bottom:32px; }
+  .expertise-symbol-art { min-height:230px; }
+  .expertise-symbol-orbit { width:180px; }
+  .expertise-symbol-art svg { width:112px; }
+  .expertise-symbol-caption { bottom:14px; gap:7px; padding:9px 11px; font-size:9px; }
   .expertise-card { min-height:0; padding:22px 18px 28px; }
   .expertise-card h3 { margin-top:30px; font-size:22px; }
   .steps { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 14px; }
