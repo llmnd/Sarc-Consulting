@@ -32,8 +32,14 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-visual">
-            <div className="hero-image">
-              <Image src={images.hero.src} alt={images.hero.alt} fill priority quality={90} sizes="(max-width:760px) 100vw,50vw" />
+            <div className="hero-photo-frame">
+              <div className="hero-photo">
+                <Image src={images.hero.src} alt={images.hero.alt} fill priority quality={90} sizes="(max-width:760px) 100vw,50vw" />
+              </div>
+              <div className="hero-photo-caption">
+                <span className="hero-photo-caption-mark" aria-hidden="true">S</span>
+                <span><strong>SARC CONSULTING</strong><small>Conseil · Conformité · Transformation</small></span>
+              </div>
             </div>
           </div>
           <a className="hero-scroll" href="#cabinet">Défiler pour découvrir</a>
