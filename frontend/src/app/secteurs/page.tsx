@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function SectorsPage() {
   const page = site.pages.sectors;
   return (
-    <InteriorPage eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
+    <InteriorPage locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
       <section className="section container">
         <Reveal className="section-heading">
           <span className="eyebrow">{page.eyebrow}</span>

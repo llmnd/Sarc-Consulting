@@ -4,9 +4,29 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { site } from "@/content/site";
+import { site as siteFr } from "@/content/site";
+import { siteEn } from "@/content/site.en";
+import { ui, type Locale } from "@/content/ui";
 
-export default function Header() {
+function LanguageFlag({ locale }: { locale: Locale }) {
+  if (locale === "fr") {
+    return (
+      <svg className="language-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false">
+        <rect width="1" height="2" fill="#002395" />
+        <rect x="1" width="1" height="2" fill="#fff" />
+        <rect x="2" width="1" height="2" fill="#ed2939" />
+      </svg>
+    );
+  }
+  return (
+    <svg className="language-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false">
+      <rect width="3" height="2" fill="#fff" />
+      <path d="M1.25 0h.5v.75h1.25v.5H1.75V2h-.5v-.75H0v-.5h1.25z" fill="#c8102e" />
+    </svg>
+  );
+}
+
+export default function Header({ locale }: { locale: Locale }) {
   const [open,setOpen] = useState(false);
   const [scrolled,setScrolled] = useState(false);
   const [hidden,setHidden] = useState(false);
@@ -14,6 +34,14 @@ export default function Header() {
   const menuRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const site = locale === "en" ? siteEn : siteFr;
+  const copy = ui[locale];
+  const homePath = locale === "en" ? "/en" : "/";
+  const localizedRoutes = [["cabinet", "about"], ["expertises", "expertise"], ["approche", "approach"], ["secteurs", "sectors"], ["engagements", "commitments"], ["contact", "contact"]] as const;
+  const routeWithoutLocale = pathname === "/en" ? "" : pathname.startsWith("/en/") ? pathname.slice(4) : pathname.slice(1);
+  const routePair = localizedRoutes.find(([french, english]) => routeWithoutLocale === french || routeWithoutLocale === english);
+  const frenchPath = pathname === "/en" ? "/" : pathname.startsWith("/en/") ? `/${routePair?.[0] ?? routeWithoutLocale}` : pathname;
+  const englishPath = pathname === "/" || pathname === "/en" ? "/en" : pathname.startsWith("/en/") ? pathname : `/en/${routePair?.[1] ?? routeWithoutLocale}`;
 
   useEffect(() => {
     const progress = document.getElementById("reading-progress");
@@ -92,28 +120,32 @@ export default function Header() {
     <>
       <div className="progress" id="reading-progress" aria-hidden="true" />
       <header className={`site-header ${scrolled ? "scrolled" : ""} ${hidden && !open ? "hidden" : ""} ${open ? "menu-open" : ""}`}>
-        <Link className="brand" href="/" aria-label="SARC Consulting, accueil">
+        <Link className="brand" href={homePath} aria-label={copy.brandHome}>
           <span className="brand-mark" aria-hidden="true">S</span>
           <span className="brand-name">SARC <small>CONSULTING</small></span>
         </Link>
+        <div className="language-switch" aria-label={copy.languageLabel}>
+          <Link className={`language-option ${locale === "fr" ? "active" : ""}`} href={frenchPath} lang="fr" aria-label="Français" aria-current={locale === "fr" ? "page" : undefined}><LanguageFlag locale="fr" /><span>FR</span></Link>
+          <Link className={`language-option ${locale === "en" ? "active" : ""}`} href={englishPath} lang="en" aria-label="English" aria-current={locale === "en" ? "page" : undefined}><LanguageFlag locale="en" /><span>EN</span></Link>
+        </div>
         <button ref={menuRef} className={`menu-toggle ${open ? "open" : ""}`} type="button"
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} aria-controls="mobile-navigation"
+          aria-label={open ? copy.closeMenu : copy.openMenu} aria-expanded={open} aria-controls="mobile-navigation"
           onClick={()=>setOpen(v=>!v)}><span/><span/></button>
-        <nav className="main-nav" id="navigation" aria-label="Navigation principale">
+        <nav className="main-nav" id="navigation" aria-label={copy.navLabel}>
           {site.nav.map(([label,path]) => <Link className={pathname===path ? "active" : ""} href={path} key={path}>{label}</Link>)}
-          <Link className={`nav-cta ${pathname==="/contact" ? "active" : ""}`} href="/contact">Parlons de vos enjeux <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
+          <Link className={`nav-cta ${pathname=== (locale === "en" ? "/en/contact" : "/contact") ? "active" : ""}`} href={locale === "en" ? "/en/contact" : "/contact"}>{copy.navCta} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
         </nav>
       </header>
       <nav
         ref={navRef}
         className={`mobile-menu ${open ? "open" : ""}`}
         id="mobile-navigation"
-        aria-label="Navigation mobile"
+        aria-label={copy.mobileNavLabel}
         aria-hidden={!open}
         onClick={(event)=>{if(event.target===event.currentTarget)setOpen(false);}}
       >
         {site.nav.map(([label,path],index) => <Link className={pathname===path ? "active" : ""} style={{transitionDelay:open ? `${index*55}ms` : "0ms"}} href={path} key={path} onClick={()=>setOpen(false)}>{label}</Link>)}
-        <Link className="nav-cta" href="/contact" onClick={()=>setOpen(false)}>Parlons de vos enjeux <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
+        <Link className="nav-cta" href={locale === "en" ? "/en/contact" : "/contact"} onClick={()=>setOpen(false)}>{copy.navCta} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
       </nav>
     </>
   );

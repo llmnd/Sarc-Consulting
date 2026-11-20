@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   const page = site.pages.contact;
   return (
-    <InteriorPage eyebrow={page.eyebrow} title={page.title} intro={page.intro} showContactCta={false}>
+    <InteriorPage locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro} showContactCta={false}>
       <section className="section container contact contact-page">
         <Reveal className="contact-copy">
           <span className="eyebrow">Dakar, Sénégal</span>
@@ -21,7 +21,7 @@ export default function ContactPage() {
           <div className="contact-detail"><div><small>Nous trouver</small>{site.location}</div></div>
           <div className="contact-detail"><div><small>Nous écrire</small>{site.email}</div></div>
         </Reveal>
-        <Reveal><ContactForm /></Reveal>
+        <Reveal><ContactForm locale="fr" /></Reveal>
       </section>
     </InteriorPage>
   );

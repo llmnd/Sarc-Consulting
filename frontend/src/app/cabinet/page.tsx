@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function CabinetPage() {
   const page = site.pages.cabinet;
   return (
-    <InteriorPage eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
+    <InteriorPage locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
       <section className="section container page-columns">
         <Reveal className="page-copy">
           <span className="eyebrow">{page.missionEyebrow}</span>

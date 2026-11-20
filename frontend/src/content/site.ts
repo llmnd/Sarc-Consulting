@@ -8,9 +8,9 @@ export const site = {
     ["Approche", "/approche"], ["Secteurs", "/secteurs"], ["Engagements", "/engagements"],
   ],
   hero: {
-    eyebrow: "Conseil · Conformité · Transformation",
+    eyebrow: "Entreprise africaine · Made in Africa",
     title: "La conformité, en mouvement.",
-    subtitle: "Nous aidons les organisations à maîtriser leurs obligations réglementaires et à faire de leurs opérations un levier de confiance et de progrès.",
+    subtitle: "Ancrée dans les réalités africaines, notre expertise en conformité et transformation accompagne les organisations qui font avancer le continent.",
   },
   stats: [
     { value: "6", label: "domaines d’expertise", note: "à confirmer" },
@@ -24,8 +24,8 @@ export const site = {
   ],
   cabinet: {
     title: "Rendre les exigences complexes plus lisibles.",
-    text: "SARC Consulting accompagne les organisations dans la gestion de leurs obligations réglementaires. Nous associons expertise, méthode et outils digitaux pour aider les équipes à mieux comprendre leurs enjeux, structurer leurs pratiques et avancer avec confiance.",
-    pageIntro: "Un cabinet de conseil indépendant, proche de vos équipes et attentif aux réalités du terrain.",
+    text: "Cabinet africain, SARC Consulting développe une expertise made in Africa, pensée pour les réalités du continent. Nous accompagnons les organisations dans la gestion de leurs obligations réglementaires en associant méthode et outils digitaux pour les aider à structurer leurs pratiques et avancer avec confiance.",
+    pageIntro: "Un cabinet africain, proche de vos équipes, ancré dans les réalités du terrain et tourné vers le continent.",
     missionTitle: "Faire de la conformité un levier de confiance.",
     missionText: "La conformité n’a de valeur que lorsqu’elle est comprise et intégrée aux décisions du quotidien. SARC Consulting aide les organisations à relier leurs exigences réglementaires à leurs opérations, avec une approche concrète, structurée et adaptée à leur contexte.",
     principles: [
@@ -91,8 +91,8 @@ export const site = {
   pages: {
     cabinet: {
       eyebrow: "Le cabinet",
-      title: "Un partenaire de proximité, ancré à Dakar et tourné vers l’avenir.",
-      intro: "SARC Consulting accompagne les organisations qui souhaitent mieux maîtriser leurs obligations et faire progresser leurs opérations.",
+      title: "Un cabinet africain, ancré à Dakar et tourné vers le continent.",
+      intro: "SARC Consulting porte une expertise made in Africa et accompagne les organisations qui souhaitent mieux maîtriser leurs obligations et faire progresser leurs opérations.",
       missionEyebrow: "Notre mission",
       principlesTitle: "Une relation de travail fondée sur le terrain.",
     },
