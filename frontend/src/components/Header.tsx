@@ -37,7 +37,22 @@ export default function Header() {
   },[pathname]);
 
   useEffect(() => {
-    document.body.classList.toggle("menu-open",open);
+    if (!open) return;
+    const body = document.body;
+    const scrollY = window.scrollY;
+    const previousBodyStyles = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+    };
+    body.classList.add("menu-open");
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
     if (open) navRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
     const onKey = (e:KeyboardEvent) => {
       if (!open) return;
@@ -61,7 +76,16 @@ export default function Header() {
       }
     };
     window.addEventListener("keydown",onKey);
-    return () => { document.body.classList.remove("menu-open"); window.removeEventListener("keydown",onKey); };
+    return () => {
+      body.classList.remove("menu-open");
+      window.removeEventListener("keydown",onKey);
+      Object.assign(body.style,previousBodyStyles);
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(0,scrollY);
+      root.style.scrollBehavior = previousScrollBehavior;
+    };
   },[open]);
 
   return (
