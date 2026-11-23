@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import HomePage from "@/components/HomePage";
 import LocalizedInteriorPage, { type InteriorPageId } from "@/components/LocalizedInteriorPage";
+import { createPageMetadata } from "@/config/seo";
 import { siteEn } from "@/content/site.en";
 
 const pageBySlug = {
@@ -27,21 +28,13 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   const { slug = [] } = await params;
   const pageSlug = slug[0] as keyof typeof pageBySlug | undefined;
   if (!pageSlug) {
-    return {
-      title: "SARC Consulting | Compliance, in motion",
-      description: siteEn.hero.subtitle,
-      openGraph: { title: "SARC Consulting", description: siteEn.hero.subtitle, locale: "en_GB" },
-    };
+    return createPageMetadata("home", "en", "SARC Consulting | Compliance, in motion", siteEn.hero.subtitle);
   }
   if (slug.length !== 1 || !Object.prototype.hasOwnProperty.call(pageBySlug, pageSlug)) return {};
 
   const pageId = pageBySlug[pageSlug];
   const page = siteEn.pages[pageId];
-  return {
-    title: `${page.eyebrow} | SARC Consulting`,
-    description: page.intro,
-    openGraph: { title: `${page.eyebrow} | SARC Consulting`, description: page.intro, locale: "en_GB" },
-  };
+  return createPageMetadata(pageId, "en", `${page.eyebrow} | SARC Consulting`, page.intro);
 }
 
 export default async function EnglishPage({ params }: { params: Promise<RouteParams> }) {

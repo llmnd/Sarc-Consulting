@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import InteriorPage from "@/components/InteriorPage";
+import { createPageMetadata } from "@/config/seo";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "Contact | SARC Consulting",
-  description: site.pages.contact.intro,
-};
+export const metadata: Metadata = createPageMetadata("contact", "fr", "Contact | SARC Consulting", site.pages.contact.intro);
 
 export default function ContactPage() {
   const page = site.pages.contact;

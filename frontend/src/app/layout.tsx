@@ -1,21 +1,54 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/config/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SARC Consulting | La conformité, en mouvement",
-  description: "Entreprise africaine de conseil basée à Dakar, SARC Consulting porte une expertise made in Africa en conformité et transformation.",
+  metadataBase: new URL(siteUrl),
+  title: "SARC Consulting | Conseil en conformité et transformation à Dakar",
+  description:
+    "Cabinet de conseil basé à Dakar, SARC Consulting accompagne les organisations africaines en conformité réglementaire, gestion des obligations et transformation digitale.",
   openGraph: {
-    title: "SARC Consulting",
-    description: "Une expertise made in Africa, une ambition panafricaine.",
+    siteName: "SARC Consulting",
     type: "website",
     locale: "fr_SN",
   },
+  twitter: { card: "summary_large_image" },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "SARC Consulting",
+  url: siteUrl,
+  email: "contact@sarc-consulting.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Dakar",
+    addressCountry: "SN",
+  },
+  areaServed: {
+    "@type": "Place",
+    name: "Afrique",
+  },
+  knowsAbout: [
+    "Conformité réglementaire",
+    "Gestion des obligations",
+    "Transformation digitale",
+    "Automatisation des opérations",
+    "Accompagnement des équipes",
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

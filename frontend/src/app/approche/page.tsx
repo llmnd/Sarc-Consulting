@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import InteriorPage from "@/components/InteriorPage";
+import { createPageMetadata } from "@/config/seo";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "Notre approche | SARC Consulting",
-  description: site.approachIntro,
-};
+export const metadata: Metadata = createPageMetadata("approach", "fr", "Notre approche | SARC Consulting", site.approachIntro);
 
 export default function ApproachPage() {
   const page = site.pages.approach;

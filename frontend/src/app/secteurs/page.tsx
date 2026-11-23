@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import InteriorPage from "@/components/InteriorPage";
+import { createPageMetadata } from "@/config/seo";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "Secteurs | SARC Consulting",
-  description: site.pages.sectors.intro,
-};
+export const metadata: Metadata = createPageMetadata("sectors", "fr", "Secteurs | SARC Consulting", site.pages.sectors.intro);
 
 export default function SectorsPage() {
   const page = site.pages.sectors;

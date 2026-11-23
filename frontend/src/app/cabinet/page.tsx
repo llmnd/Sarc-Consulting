@@ -3,12 +3,10 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import InteriorPage from "@/components/InteriorPage";
 import { images } from "@/config/images";
+import { createPageMetadata } from "@/config/seo";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "Le cabinet | SARC Consulting",
-  description: site.cabinet.pageIntro,
-};
+export const metadata: Metadata = createPageMetadata("cabinet", "fr", "Le cabinet | SARC Consulting", site.cabinet.pageIntro);
 
 export default function CabinetPage() {
   const page = site.pages.cabinet;

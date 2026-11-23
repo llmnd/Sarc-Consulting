@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import InteriorPage from "@/components/InteriorPage";
+import { createPageMetadata } from "@/config/seo";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "Nos engagements | SARC Consulting",
-  description: site.pages.commitments.intro,
-};
+export const metadata: Metadata = createPageMetadata("commitments", "fr", "Nos engagements | SARC Consulting", site.pages.commitments.intro);
 
 export default function CommitmentsPage() {
   const page = site.pages.commitments;

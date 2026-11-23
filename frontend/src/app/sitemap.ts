@@ -1,13 +1,17 @@
 import type { MetadataRoute } from "next";
+import { localizedRoutes, siteUrl } from "@/config/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.sarc-consulting.com";
-  const pages = ["", "/cabinet", "/expertises", "/approche", "/secteurs", "/engagements", "/contact"];
-  const englishPages = ["/en", "/en/about", "/en/expertise", "/en/approach", "/en/sectors", "/en/commitments", "/en/contact"];
-  return [...pages, ...englishPages].map((page, index) => ({
-    url: `${baseUrl}${page}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: index === 0 || index === pages.length ? 1 : 0.8,
-  }));
+  return Object.values(localizedRoutes).flatMap(({ fr, en }) => {
+    const languages = {
+      "fr-SN": `${siteUrl}${fr}`,
+      en: `${siteUrl}${en}`,
+      "x-default": `${siteUrl}${fr}`,
+    };
+
+    return [fr, en].map((path) => ({
+      url: `${siteUrl}${path}`,
+      alternates: { languages },
+    }));
+  });
 }
