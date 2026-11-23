@@ -18,10 +18,31 @@ export const siteEn = {
     { value: "1", label: "goal: building trust", note: "to be confirmed" },
   ],
   teamMembers: [
-    { name: "Profile 1", role: "Role to be confirmed", bio: "Profile to be completed once the team member's information is available.", portrait: null },
-    { name: "Profile 2", role: "Role to be confirmed", bio: "Profile to be completed once the team member's information is available.", portrait: null },
-    { name: "Profile 3", role: "Role to be confirmed", bio: "Profile to be completed once the team member's information is available.", portrait: null },
-  ],
+    {
+      name: "Stéphanie Roucou",
+      role: "President and Founder",
+      bio: "President and Founder, Stéphanie has worked in healthcare for more than twenty years and has led nearly fifty LEA/DMOS outsourcing projects over the past twelve years. Convinced that compliance can become a competitive advantage for industrial companies, she founded COMPLYA in 2018. As a regulatory expert and a proponent of a pragmatic implementation approach, she helps Complya clients resolve their challenges and put practical solutions in place.",
+      portrait: "/images/stephanie-roucou.webp",
+    },
+    {
+      name: "Christelle Sontag",
+      role: "Audit, Performance & Continuous Improvement Manager",
+      bio: "Christelle has 30 years of experience in healthcare, including 25 years in DMOS, DEA and Health Transparency. She established one of the first outsourced services for administrative management and the payment of fees. She then led an outsourced DMOS service of more than 30 employees for nearly 12 years. Since January 2024, she has been responsible for Audit, Performance and Continuous Improvement at Complya.",
+      portrait: "/images/christelle-sontag.webp",
+    },
+    {
+      name: "Nawel Ramdani",
+      role: "Operations Director",
+      bio: "After taking part in two DMOS outsourcing projects for major international groups, Nawel joined COMPLYA in 2021. As head of operations, she connects clients and employees, ensures client needs are met, leads the project manager and account manager teams, and supports client satisfaction.",
+      portrait: "/images/nawel-ramdani.webp",
+    },
+    {
+      name: "Aissata Ba",
+      role: "HR Manager",
+      bio: "Aissata Ba supports human resources priorities and the development of teams.",
+      portrait: null,
+    },
+  ] as Array<{ name: string; role: string; bio: string; portrait: string | null }>,
   cabinet: {
     title: "Making complex requirements easier to navigate.",
     text: "As an African consulting firm, SARC Consulting brings expertise made in Africa and shaped by the realities of the continent. We help organisations manage their regulatory obligations, combining structured methods and digital tools to strengthen practices and move forward with confidence.",

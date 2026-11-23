@@ -18,10 +18,31 @@ export const site = {
     { value: "1", label: "objectif : la confiance", note: "à confirmer" },
   ],
   teamMembers: [
-    { name: "Profil 1", role: "Fonction à renseigner", bio: "Présentation à compléter à réception des informations du membre.", portrait: null },
-    { name: "Profil 2", role: "Fonction à renseigner", bio: "Présentation à compléter à réception des informations du membre.", portrait: null },
-    { name: "Profil 3", role: "Fonction à renseigner", bio: "Présentation à compléter à réception des informations du membre.", portrait: null },
-  ],
+    {
+      name: "Stéphanie Roucou",
+      role: "Présidente Fondatrice",
+      bio: "Présidente Fondatrice, Stéphanie évolue depuis plus de vingt ans dans l’univers de la santé et a conduit près de cinquante projets d’externalisation LEA/DMOS au cours des douze dernières années. Convaincue que la compliance peut devenir un avantage concurrentiel pour les industriels, elle crée COMPLYA en 2018. Experte de la réglementation et partisane d’une approche pragmatique de sa mise en œuvre, elle accompagne les clients de Complya sur la résolution de leurs problématiques et la mise en place de solutions pratiques.",
+      portrait: "/images/stephanie-roucou.webp",
+    },
+    {
+      name: "Christelle Sontag",
+      role: "Responsable Audit, Performance & Amélioration Continue",
+      bio: "Christelle compte 30 ans d’expérience dans le domaine de la santé, dont 25 ans dans les domaines DMOS, DEA et Transparence Santé. Elle a mis en place l’un des premiers services externalisés de gestion administrative et de paiement des honoraires. Elle a ensuite piloté pendant près de 12 ans un service externalisé DMOS de plus de 30 collaborateurs. Depuis janvier 2024, elle est responsable de l’Audit, de la Performance et de l’Amélioration Continue chez Complya.",
+      portrait: "/images/christelle-sontag.webp",
+    },
+    {
+      name: "Nawel Ramdani",
+      role: "Directrice des Opérations",
+      bio: "Après avoir participé à deux projets d’externalisation DMOS pour de grands groupes internationaux, Nawel a rejoint COMPLYA en 2021. À la tête des opérations, elle fait le lien entre les clients et les collaborateurs. Elle veille à répondre aux besoins des clients, encadre l’équipe de chefs de projets et de chargés de dossiers et accompagne la satisfaction des clients.",
+      portrait: "/images/nawel-ramdani.webp",
+    },
+    {
+      name: "Aissata Ba",
+      role: "Responsable RH",
+      bio: "Aissata Ba accompagne les enjeux des ressources humaines et le développement des équipes.",
+      portrait: null,
+    },
+  ] as Array<{ name: string; role: string; bio: string; portrait: string | null }>,
   cabinet: {
     title: "Rendre les exigences complexes plus lisibles.",
     text: "Cabinet africain, SARC Consulting développe une expertise made in Africa, pensée pour les réalités du continent. Nous accompagnons les organisations dans la gestion de leurs obligations réglementaires en associant méthode et outils digitaux pour les aider à structurer leurs pratiques et avancer avec confiance.",

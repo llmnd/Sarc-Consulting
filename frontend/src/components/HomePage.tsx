@@ -92,7 +92,18 @@ export default function HomePage({ locale }: { locale: Locale }) {
                         {member.portrait ? (
                           <Image className="team-avatar" src={member.portrait} alt={`${home.portraitAlt} ${member.name}`} width={160} height={160} sizes="(max-width:760px) 152px,160px" />
                         ) : (
-                          <span className="team-avatar team-avatar-placeholder" role="img" aria-label={`${home.portraitPending} ${member.name}`}>{String(index + 1).padStart(2, "0")}</span>
+                          <span className="team-avatar team-avatar-placeholder" role="img" aria-label={`${home.portraitPending} ${member.name}`}>
+                            <svg aria-hidden="true" viewBox="0 0 160 160" className="team-avatar-placeholder-art">
+                              <circle cx="80" cy="58" r="27" fill="#dfb6a6" />
+                              <path d="M53 58c0-23 12-37 27-37 17 0 30 15 30 38-7-4-13-10-17-18-8 10-21 16-40 17Z" fill="#6e4a3d" />
+                              <path d="M54 61c1 21 11 34 26 34 16 0 26-13 27-34-5 8-15 14-27 14-12 0-21-5-26-14Z" fill="#dfb6a6" />
+                              <circle cx="69" cy="61" r="1.5" fill="#30343a" />
+                              <circle cx="91" cy="61" r="1.5" fill="#30343a" />
+                              <path d="M71 75c5 5 13 5 18 0" fill="none" stroke="#b66c63" strokeWidth="2" strokeLinecap="round" />
+                              <path d="M30 160c3-34 21-54 50-54s47 20 50 54Z" fill="#173f6b" />
+                              <path d="M62 107l18 20 18-20" fill="#fff" opacity=".9" />
+                            </svg>
+                          </span>
                         )}
                         <span className="team-profile-overlay" aria-hidden="true">
                           <span className="team-profile-name">{member.name}</span>
