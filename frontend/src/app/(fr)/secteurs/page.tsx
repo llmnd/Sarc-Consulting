@@ -9,7 +9,7 @@ export const metadata: Metadata = createPageMetadata("sectors", "fr", "Secteurs 
 export default function SectorsPage() {
   const page = site.pages.sectors;
   return (
-    <InteriorPage locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
+    <InteriorPage pageId="sectors" locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
       <section className="section container">
         <Reveal className="section-heading">
           <span className="eyebrow">{page.eyebrow}</span>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteUrl } from "@/config/seo";
-import "./globals.css";
+import SeoStructuredData from "@/components/SeoStructuredData";
+import "../globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -15,38 +16,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "SARC Consulting",
-  url: siteUrl,
-  email: "contact@sarc-consulting.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Dakar",
-    addressCountry: "SN",
-  },
-  areaServed: {
-    "@type": "Place",
-    name: "Afrique",
-  },
-  knowsAbout: [
-    "Conformité réglementaire",
-    "Gestion des obligations",
-    "Transformation digitale",
-    "Automatisation des opérations",
-    "Accompagnement des équipes",
-  ],
-};
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }}
-        />
+        <SeoStructuredData locale="fr" />
         {children}
       </body>
     </html>

@@ -12,8 +12,8 @@ export const localizedRoutes = {
   contact: { fr: "/contact", en: "/en/contact" },
 } as const;
 
-type SeoPage = keyof typeof localizedRoutes;
-type Locale = "fr" | "en";
+export type SeoPage = keyof typeof localizedRoutes;
+export type Locale = "fr" | "en";
 
 export function createPageMetadata(
   page: SeoPage,
@@ -32,7 +32,7 @@ export function createPageMetadata(
     alternates: {
       canonical: canonicalPath,
       languages: {
-        "fr-SN": paths.fr,
+        fr: paths.fr,
         en: paths.en,
         "x-default": paths.fr,
       },
@@ -48,7 +48,9 @@ export function createPageMetadata(
       images: [
         {
           url: "/images/sarc-hero-team.jpg",
-          alt: "L’équipe de SARC Consulting échange autour d’une tablette",
+          alt: locale === "fr"
+            ? "L’équipe de SARC Consulting échange autour d’une tablette"
+            : "The SARC Consulting team discusses a project around a tablet",
         },
       ],
     },

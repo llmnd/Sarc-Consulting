@@ -11,7 +11,7 @@ export const metadata: Metadata = createPageMetadata("cabinet", "fr", "Le cabine
 export default function CabinetPage() {
   const page = site.pages.cabinet;
   return (
-    <InteriorPage locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
+    <InteriorPage pageId="cabinet" locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
       <section className="section container page-columns">
         <Reveal className="page-copy">
           <span className="eyebrow">{page.missionEyebrow}</span>

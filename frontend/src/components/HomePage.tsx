@@ -13,17 +13,9 @@ export default function HomePage({ locale }: { locale: Locale }) {
   const site = locale === "en" ? siteEn : siteFr;
   const copy = ui[locale];
   const home = copy.home;
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "SARC Consulting",
-    address: { "@type": "PostalAddress", addressLocality: "Dakar", addressCountry: "SN" },
-    areaServed: "SN",
-  };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <a className="skip-link" href="#main">{copy.skipLink}</a>
       <Header locale={locale} />
       <main id="main" tabIndex={-1}>

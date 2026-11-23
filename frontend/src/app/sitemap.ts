@@ -4,7 +4,7 @@ import { localizedRoutes, siteUrl } from "@/config/seo";
 export default function sitemap(): MetadataRoute.Sitemap {
   return Object.values(localizedRoutes).flatMap(({ fr, en }) => {
     const languages = {
-      "fr-SN": `${siteUrl}${fr}`,
+      fr: `${siteUrl}${fr}`,
       en: `${siteUrl}${en}`,
       "x-default": `${siteUrl}${fr}`,
     };

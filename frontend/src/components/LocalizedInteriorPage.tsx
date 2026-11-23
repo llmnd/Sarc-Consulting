@@ -172,7 +172,7 @@ export default function LocalizedInteriorPage({ pageId, locale }: { pageId: Inte
 
   const page = site.pages[pageId];
   return (
-    <InteriorPage locale={locale} eyebrow={page.eyebrow} title={page.title} intro={page.intro} showContactCta={pageId !== "contact"}>
+    <InteriorPage pageId={pageId} locale={locale} eyebrow={page.eyebrow} title={page.title} intro={page.intro} showContactCta={pageId !== "contact"}>
       {pageContent}
     </InteriorPage>
   );

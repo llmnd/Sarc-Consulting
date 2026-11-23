@@ -10,7 +10,7 @@ export const metadata: Metadata = createPageMetadata("contact", "fr", "Contact |
 export default function ContactPage() {
   const page = site.pages.contact;
   return (
-    <InteriorPage locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro} showContactCta={false}>
+    <InteriorPage pageId="contact" locale="fr" eyebrow={page.eyebrow} title={page.title} intro={page.intro} showContactCta={false}>
       <section className="section container contact contact-page">
         <Reveal className="contact-copy">
           <span className="eyebrow">Dakar, Sénégal</span>

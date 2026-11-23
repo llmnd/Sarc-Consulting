@@ -6,6 +6,7 @@ import SiteFooter from "@/components/SiteFooter";
 import { site as siteFr } from "@/content/site";
 import { siteEn } from "@/content/site.en";
 import { ui, type Locale } from "@/content/ui";
+import { localizedRoutes, siteUrl, type SeoPage } from "@/config/seo";
 
 type InteriorPageProps = {
   eyebrow: string;
@@ -13,6 +14,7 @@ type InteriorPageProps = {
   intro: string;
   children: ReactNode;
   locale: Locale;
+  pageId: SeoPage;
   showContactCta?: boolean;
 };
 
@@ -22,13 +24,38 @@ export default function InteriorPage({
   intro,
   children,
   locale,
+  pageId,
   showContactCta = true,
 }: InteriorPageProps) {
   const site = locale === "en" ? siteEn : siteFr;
   const copy = ui[locale];
   const contactPath = locale === "en" ? "/en/contact" : "/contact";
+  const homePath = localizedRoutes.home[locale];
+  const pagePath = localizedRoutes[pageId][locale];
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: locale === "en" ? "Home" : "Accueil",
+        item: `${siteUrl}${homePath}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: eyebrow,
+        item: `${siteUrl}${pagePath}`,
+      },
+    ],
+  };
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }}
+      />
       <a className="skip-link" href="#main">{copy.skipLink}</a>
       <Header locale={locale} />
       <main id="main" tabIndex={-1}>
