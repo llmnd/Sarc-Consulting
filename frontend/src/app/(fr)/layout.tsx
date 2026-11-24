@@ -5,6 +5,10 @@ import "../globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
   title: "SARC Consulting | Back-office conformité, juridique et IA à Dakar",
   description:
     "SARC Consulting SAS accompagne les entreprises en conformité, juridique, excellence opérationnelle et automatisation depuis Dakar.",

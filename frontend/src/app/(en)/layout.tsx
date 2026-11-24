@@ -7,6 +7,10 @@ import "../globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
   title: "SARC Consulting | Compliance, in motion",
   description: siteEn.hero.subtitle,
   openGraph: {

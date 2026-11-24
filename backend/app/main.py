@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from app.core.config import settings
 from app.routers.contact import router as contact_router
+from app.routers.admin import router as admin_router
 
 logging.basicConfig(level=logging.INFO, format='{"level":"%(levelname)s","message":"%(message)s"}')
 app = FastAPI(title=settings.app_name)
@@ -14,6 +15,7 @@ app.add_middleware(
     allow_headers=["Content-Type","Authorization"],
 )
 app.include_router(contact_router)
+app.include_router(admin_router)
 
 @app.middleware("http")
 async def security_headers(request: Request, call_next):

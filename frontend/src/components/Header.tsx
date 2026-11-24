@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Plus, Search, UserRound } from "lucide-react";
 import { site as siteFr } from "@/content/site";
 import { siteEn } from "@/content/site.en";
 import { ui, type Locale } from "@/content/ui";
@@ -29,6 +29,8 @@ function LanguageFlag({ locale }: { locale: Locale }) {
 
 export default function Header({ locale }: { locale: Locale }) {
   const [open,setOpen] = useState(false);
+  const [searchOpen,setSearchOpen] = useState(false);
+  const [searchValue,setSearchValue] = useState("");
   const [scrolled,setScrolled] = useState(false);
   const [hidden,setHidden] = useState(false);
   const lastY = useRef(0);
@@ -68,6 +70,7 @@ export default function Header({ locale }: { locale: Locale }) {
 
   useEffect(() => {
     if (!open) return;
+    setSearchOpen(false);
     const body = document.body;
     const scrollY = window.scrollY;
     const previousBodyStyles = {
@@ -136,6 +139,69 @@ export default function Header({ locale }: { locale: Locale }) {
           {site.nav.map(([label,path]) => <Link className={pathname===path ? "active" : ""} href={path} key={path}>{label}</Link>)}
           <Link className={`nav-cta ${pathname=== (locale === "en" ? "/en/contact" : "/contact") ? "active" : ""}`} href={locale === "en" ? "/en/contact" : "/contact"}>{copy.navCta} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
         </nav>
+        <div className="header-utility" aria-label="Liens secondaires">
+          <a
+            className="header-linkedin"
+            href="https://www.linkedin.com/company/sarc-consulting"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="SARC Consulting sur LinkedIn"
+          >
+            <Image className="header-linkedin-logo" src="/images/linkedin.svg" alt="" width={28} height={28} />
+            <span className="header-linkedin-label">LinkedIn</span>
+          </a>
+          <div className="header-utility-center" aria-label={locale === "en" ? "Areas of expertise" : "Nos expertises"}>
+            {locale === "en" ? "Compliance · Legal · Process · AI" : "Conformité · Juridique · Process · IA"}
+          </div>
+          <div className="header-utility-actions">
+            <button
+              className="header-utility-button header-search-button"
+              type="button"
+              aria-label={locale === "en" ? "Search" : "Rechercher"}
+              aria-expanded={searchOpen}
+              onClick={() => setSearchOpen((value) => !value)}
+            >
+              <Search size={16} strokeWidth={1.8} aria-hidden="true" />
+            </button>
+            <Link
+              className="header-utility-button header-plus-button"
+              href={locale === "en" ? "/en/contact" : "/contact"}
+              aria-label={locale === "en" ? "Start a request" : "Faire une demande"}
+            >
+              <Plus size={17} strokeWidth={2} aria-hidden="true" />
+            </Link>
+            <Link
+              className="header-utility-button header-login"
+              href="/admin/login"
+              aria-label={locale === "en" ? "Sign in" : "Se connecter"}
+            >
+              <UserRound size={16} strokeWidth={1.8} aria-hidden="true" />
+            </Link>
+            {searchOpen && (
+              <div className="header-search-popover" role="search">
+                <label htmlFor="header-search">{locale === "en" ? "Search the site" : "Rechercher sur le site"}</label>
+                <input
+                  id="header-search"
+                  value={searchValue}
+                  onChange={(event) => setSearchValue(event.target.value)}
+                  placeholder={locale === "en" ? "Page or topic…" : "Page ou sujet…"}
+                  autoFocus
+                />
+                <div className="header-search-results">
+                  {site.nav
+                    .filter(([label]) => label.toLowerCase().includes(searchValue.trim().toLowerCase()))
+                    .slice(0, 5)
+                    .map(([label, path]) => (
+                      <Link href={path} key={path} onClick={() => setSearchOpen(false)}>{label}</Link>
+                    ))}
+                  {searchValue.trim() && !site.nav.some(([label]) => label.toLowerCase().includes(searchValue.trim().toLowerCase())) && (
+                    <span>{locale === "en" ? "No page found" : "Aucune page trouvée"}</span>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </header>
       <nav
         ref={navRef}

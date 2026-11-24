@@ -25,6 +25,7 @@ export default function SeoStructuredData({ locale }: { locale: Locale }) {
       "@id": `${siteUrl}/#organization`,
       name: locale === "fr" ? "SARC Consulting SAS" : "SARC Consulting",
       url: siteUrl,
+      logo: `${siteUrl}/images/sarc-logo-seo.png`,
       email: "aissata.ba-seck@sarc-consulting.com",
       telephone: "+221 76 973 52 44",
       address: {
