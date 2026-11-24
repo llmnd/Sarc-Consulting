@@ -199,7 +199,10 @@ main:focus { outline:none; }
 .home-sectors { background:#f0eee8; }
 .sector-section-heading { margin-bottom:18px; }
 .sector-section-title { max-width:1000px; min-height:1.12em; margin:18px 0 30px; color:var(--navy); font-size:clamp(36px,4vw,52px); line-height:1.06; animation:sectorPanelReveal .3s var(--ease) both; }
-.sector-list { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; }
+.sector-list { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:10px; margin-bottom:22px; }
+.sector-pill:nth-child(-n+4) { grid-column:span 3; }
+.sector-pill:nth-child(5) { grid-column:5/span 3; }
+.sector-pill:nth-child(6) { grid-column:8/span 3; }
 .sector-pill { display:inline-flex; min-height:42px; align-items:center; gap:9px; padding:9px 16px; border:1px solid var(--navy); border-radius:999px; background:transparent; color:var(--navy); font:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:background .2s,border-color .2s,color .2s,transform .2s,box-shadow .2s; }
 .sector-pill:hover { border-color:var(--gold); box-shadow:0 5px 16px rgba(14,29,60,.08); transform:translateY(-2px); }
 .sector-pill:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
@@ -439,6 +442,9 @@ main:focus { outline:none; }
   .home-sectors { padding-inline:var(--gutter); }
   .sector-section-title { max-width:100%; margin:14px 0 24px; font-size:clamp(38px,11vw,52px); line-height:.98; text-wrap:balance; }
   .sector-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-bottom:16px; }
+  .sector-pill:nth-child(-n+4) { grid-column:span 1; }
+  .sector-pill:nth-child(5) { grid-column:auto; }
+  .sector-pill:nth-child(6) { grid-column:1/-1; }
   .sector-pill { min-height:48px; width:100%; justify-content:flex-start; padding:8px 10px; border-radius:999px; font-size:11px; line-height:1.25; }
   .sector-pill.featured { grid-column:1/-1; justify-content:center; text-align:center; }
   .sector-pill:last-child { grid-column:1/-1; width:calc(50% - 4px); justify-self:center; }
