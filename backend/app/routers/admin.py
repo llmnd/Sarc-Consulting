@@ -7,7 +7,7 @@ import jwt
 from fastapi import APIRouter, HTTPException, Response, status
 
 from app.core.config import settings
-from app.schemas.admin import AdminLoginRequest, AdminSetupRequest
+from app.schemas.admin import AdminLoginRequest
 
 router = APIRouter(prefix="/api/admin")
 COOKIE_NAME = "sarc_admin_session"
@@ -23,32 +23,6 @@ def session_secret() -> str:
     if not settings.admin_session_secret:
         raise HTTPException(status_code=503, detail="ADMIN_SESSION_SECRET is not configured.")
     return settings.admin_session_secret
-
-
-@router.post("/setup")
-async def setup(payload: AdminSetupRequest):
-    if payload.website:
-        raise HTTPException(status_code=400, detail="Request rejected.")
-
-    connection = await connect()
-    try:
-        count = await connection.fetchval("SELECT count(*)::int FROM admin_users")
-        if count:
-            raise HTTPException(status_code=409, detail="Le compte administrateur existe déjà.")
-
-        password_hash = bcrypt.hashpw(payload.password.encode("utf-8"), bcrypt.gensalt(rounds=12)).decode("utf-8")
-        await connection.execute(
-            """
-            INSERT INTO admin_users (name, email, password_hash, role, active)
-            VALUES ($1, $2, $3, 'admin', true)
-            """,
-            payload.name.strip(),
-            str(payload.email).lower(),
-            password_hash,
-        )
-        return {"ok": True}
-    finally:
-        await connection.close()
 
 
 @router.post("/login")
@@ -102,13 +76,3 @@ async def login(payload: AdminLoginRequest, response: Response):
 async def logout(response: Response):
     response.delete_cookie(COOKIE_NAME, path="/")
     return {"ok": True}
-
-
-@router.get("/setup/status")
-async def setup_status():
-    connection = await connect()
-    try:
-        count = await connection.fetchval("SELECT count(*)::int FROM admin_users")
-        return {"configured": bool(count)}
-    finally:
-        await connection.close()

@@ -10,12 +10,12 @@ export default function AdminLoginPage() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("/api/admin/setup/status")
-      .then((response) => response.json())
-      .then((body) => {
-        if (!body.configured) window.location.assign("/admin/setup");
-      })
-      .catch(() => {});
+    const params = new URLSearchParams(window.location.search);
+    const loginError = params.get("error");
+    if (loginError) {
+      setStatus("error");
+      setMessage(loginError);
+    }
   }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
           <span className="admin-auth-kicker">Espace privé</span>
           <h1>Bon retour.</h1>
           <p>Connectez-vous pour accéder au tableau de bord.</p>
-          <form className="admin-auth-form" onSubmit={submit}>
+          <form className="admin-auth-form" method="post" action="/api/admin/login" onSubmit={submit}>
             <label>
               Adresse email
               <span className="admin-auth-field">

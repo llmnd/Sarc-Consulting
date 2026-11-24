@@ -7,7 +7,8 @@ export async function GET() {
 
   const sql = getSql();
   const articles = await sql`
-    SELECT id::text, slug, title_fr, status, published_at, created_at
+    SELECT id::text, slug, title_fr, excerpt_fr, content_fr,
+           title_en, excerpt_en, content_en, status, published_at, created_at
     FROM articles
     ORDER BY created_at DESC
   `;
