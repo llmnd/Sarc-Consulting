@@ -4,12 +4,14 @@ export const siteUrl = "https://www.sarc-consulting.com";
 
 export const localizedRoutes = {
   home: { fr: "/", en: "/en" },
-  cabinet: { fr: "/cabinet", en: "/en/about" },
-  expertises: { fr: "/expertises", en: "/en/expertise" },
-  approach: { fr: "/approche", en: "/en/approach" },
+  cabinet: { fr: "/a-propos", en: "/en/about" },
+  expertises: { fr: "/prestations", en: "/en/expertise" },
+  approach: { fr: "/methode", en: "/en/approach" },
   sectors: { fr: "/secteurs", en: "/en/sectors" },
   commitments: { fr: "/engagements", en: "/en/commitments" },
+  news: { fr: "/actualites", en: "/en/news" },
   contact: { fr: "/contact", en: "/en/contact" },
+  ai: { fr: "/ia-automatisation", en: "/en/ai-automation" },
 } as const;
 
 export type SeoPage = keyof typeof localizedRoutes;
@@ -47,7 +49,7 @@ export function createPageMetadata(
       type: "website",
       images: [
         {
-          url: "/images/sarc-hero-team.jpg",
+          url: "/images/sarc-maquette-team.png",
           alt: locale === "fr"
             ? "L’équipe de SARC Consulting échange autour d’une tablette"
             : "The SARC Consulting team discusses a project around a tablet",
@@ -58,7 +60,7 @@ export function createPageMetadata(
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/sarc-hero-team.jpg"],
+      images: ["/images/sarc-maquette-team.png"],
     },
   };
 }

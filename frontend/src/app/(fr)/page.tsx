@@ -5,8 +5,8 @@ import { createPageMetadata } from "@/config/seo";
 export const metadata: Metadata = createPageMetadata(
   "home",
   "fr",
-  "SARC Consulting | Conseil en conformité et transformation à Dakar",
-  "Cabinet de conseil basé à Dakar, SARC Consulting accompagne les organisations africaines en conformité réglementaire, gestion des obligations et transformation digitale.",
+  "SARC Consulting | Back-office conformité, juridique et IA à Dakar",
+  "SARC Consulting SAS accompagne les entreprises en conformité, juridique, excellence opérationnelle et automatisation depuis Dakar.",
 );
 
 export default function Home() {

@@ -37,13 +37,14 @@ export default function Header({ locale }: { locale: Locale }) {
   const site = locale === "en" ? siteEn : siteFr;
   const copy = ui[locale];
   const homePath = locale === "en" ? "/en" : "/";
-  const localizedRoutes = [["cabinet", "about"], ["expertises", "expertise"], ["approche", "approach"], ["secteurs", "sectors"], ["engagements", "commitments"], ["contact", "contact"]] as const;
+  const localizedRoutes = [["a-propos", "about"], ["prestations", "expertise"], ["ia-automatisation", "ai-automation"], ["methode", "approach"], ["secteurs", "sectors"], ["actualites", "news"], ["engagements", "commitments"], ["contact", "contact"], ["cabinet", "about"], ["expertises", "expertise"], ["approche", "approach"]] as const;
   const routeWithoutLocale = pathname === "/en" ? "" : pathname.startsWith("/en/") ? pathname.slice(4) : pathname.slice(1);
   const routePair = localizedRoutes.find(([french, english]) => routeWithoutLocale === french || routeWithoutLocale === english);
   const frenchPath = pathname === "/en" ? "/" : pathname.startsWith("/en/") ? `/${routePair?.[0] ?? routeWithoutLocale}` : pathname;
   const englishPath = pathname === "/" || pathname === "/en" ? "/en" : pathname.startsWith("/en/") ? pathname : `/en/${routePair?.[1] ?? routeWithoutLocale}`;
 
   useEffect(() => {
+    document.documentElement.lang = locale;
     const progress = document.getElementById("reading-progress");
     lastY.current = 0;
     setHidden(false);
@@ -62,7 +63,7 @@ export default function Header({ locale }: { locale: Locale }) {
     window.addEventListener("scroll",onScroll,{passive:true});
     onScroll();
     return () => window.removeEventListener("scroll",onScroll);
-  },[pathname]);
+  },[pathname, locale]);
 
   useEffect(() => {
     if (!open) return;

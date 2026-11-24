@@ -17,7 +17,9 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-export default function EnglishLayout({ children }: { children: ReactNode }) {
+export default function EnglishRootLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <body>

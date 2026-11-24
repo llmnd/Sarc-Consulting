@@ -12,6 +12,13 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90],
   },
+  async redirects() {
+    return [
+      { source: "/cabinet", destination: "/a-propos", permanent: true },
+      { source: "/expertises", destination: "/prestations", permanent: true },
+      { source: "/approche", destination: "/methode", permanent: true },
+    ];
+  },
   async rewrites() {
     return [{ source: "/api/:path*", destination: `${backendUrl}/api/:path*` }];
   },

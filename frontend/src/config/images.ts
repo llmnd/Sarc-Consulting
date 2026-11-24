@@ -1,7 +1,7 @@
 export const images = {
   hero: {
-    src: "/images/sarc-hero-team.jpg",
-    alt: "Trois consultants échangent autour d’une tablette dans un bureau",
+    src: "/images/sarc-maquette-team.png",
+    alt: "Deux consultantes échangent devant des tableaux de données dans un bureau",
   },
   expertises: {
     src: "/images/sarc-expertise-workshop.jpg",

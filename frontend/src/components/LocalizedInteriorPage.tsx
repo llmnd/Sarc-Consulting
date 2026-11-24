@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowDownToLine, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import InteriorPage from "@/components/InteriorPage";
@@ -20,30 +22,132 @@ export default function LocalizedInteriorPage({ pageId, locale }: { pageId: Inte
       const page = site.pages.cabinet;
       pageContent = (
         <>
-          <section className="section container page-columns">
-            <Reveal className="page-copy">
-              <span className="eyebrow">{page.missionEyebrow}</span>
-              <h2 className="serif">{site.cabinet.missionTitle}</h2>
-              <p>{site.cabinet.missionText}</p>
+          <section className="section container page-columns about-president-section">
+            <Reveal className="president-portrait">
+              <span className="president-monogram" aria-hidden="true">AB</span>
+              <span className="president-portrait-label">{page.portraitLabel}</span>
             </Reveal>
-            <Reveal className="page-image">
-              <Image src={images.hero.src} alt={copy.home.teamPhotoAlt} fill sizes="(max-width:760px) 100vw,48vw" />
+            <Reveal className="page-copy president-copy">
+              <span className="eyebrow">{page.missionEyebrow}</span>
+              <blockquote className="president-quote serif">
+                <span className="president-quote-mark" aria-hidden="true">“</span>
+                <span>{site.cabinet.president.quote}</span>
+              </blockquote>
+              {site.cabinet.president.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              <p className="president-attribution"><strong>{site.cabinet.president.name}</strong>, {site.cabinet.president.role}</p>
             </Reveal>
           </section>
           <section className="section page-soft">
             <div className="container">
               <Reveal className="section-heading">
-                <span className="eyebrow">{page.eyebrow}</span>
+                <span className="eyebrow">{page.historyEyebrow}</span>
+                <h2 className="serif">{page.historyTitle}</h2>
+                <p className="history-intro">{site.cabinet.history.intro}</p>
+              </Reveal>
+              <div className="history-grid">
+                {site.cabinet.history.milestones.map((milestone) => (
+                  <Reveal className="history-card" key={`${milestone.date}-${milestone.title}`}>
+                    <time>{milestone.date}</time>
+                    <h3>{milestone.title}</h3>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section className="section about-values">
+            <div className="container">
+              <Reveal className="section-heading">
+                <span className="eyebrow">{page.principlesEyebrow}</span>
                 <h2 className="serif">{page.principlesTitle}</h2>
               </Reveal>
-              <div className="page-card-grid">
-                {site.cabinet.principles.map(([title, text], index) => (
-                  <Reveal className="page-card" key={title}>
-                    <span className="page-card-number">{String(index + 1).padStart(2, "0")}</span>
+              <div className="about-values-grid">
+                {site.cabinet.principles.map(([title, text]) => (
+                  <Reveal className="about-value" key={title}>
                     <h3>{title}</h3>
                     <p>{text}</p>
                   </Reveal>
                 ))}
+              </div>
+            </div>
+          </section>
+          <section className="section page-soft">
+            <div className="container">
+              <Reveal className="section-heading">
+                <span className="eyebrow">{page.modelsEyebrow}</span>
+                <h2 className="serif">{page.modelsTitle}</h2>
+              </Reveal>
+              <div className="about-model-grid">
+                {site.cabinet.interventionModels.map(([title, text]) => (
+                  <Reveal className="about-model-card" key={title}>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section className="section team-section">
+            <div className="container">
+              <Reveal className="team-heading">
+                <span className="eyebrow">{copy.home.team}</span>
+                <h2 className="serif">{copy.home.teamTitle}</h2>
+                <p>{copy.home.teamIntro}</p>
+              </Reveal>
+              <div className="team-grid about-team-grid">
+                {site.teamMembers.map((member) => {
+                  const initials = member.name.split(/\s+/).slice(0, 2).map((part) => part.charAt(0)).join("");
+
+                  return (
+                    <Reveal className="team-card-wrap" key={member.name}>
+                      <details className="team-card">
+                        <summary>
+                          <span className="team-profile-visual">
+                            {member.portrait ? (
+                              <Image
+                                className="team-avatar"
+                                src={member.portrait}
+                                alt={`${copy.home.portraitAlt} ${member.name}`}
+                                width={160}
+                                height={160}
+                                sizes="(max-width:760px) 96px,160px"
+                              />
+                            ) : (
+                              <span className="team-avatar team-avatar-placeholder team-profile-monogram" aria-hidden="true">
+                                {initials}
+                              </span>
+                            )}
+                            <span className="team-profile-overlay" aria-hidden="true">
+                              <span className="team-profile-name">{member.name}</span>
+                              <span className="team-profile-role">{member.role}</span>
+                            </span>
+                          </span>
+                          <span className="team-profile-accessible-name">{member.name}</span>
+                          <span className="team-profile-accessible-role">{member.role}</span>
+                          <span className="team-more">
+                            <span>{copy.home.learnMore}</span>
+                            <span className="team-more-icon" aria-hidden="true">+</span>
+                          </span>
+                        </summary>
+                        <div className="team-bio"><p>{member.bio}</p></div>
+                      </details>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+          <section className="page-cta">
+            <div className="page-cta-content">
+              <span className="eyebrow">{copy.interiorCtaEyebrow}</span>
+              <h2 className="serif">{copy.home.finalCtaTitle}</h2>
+              <p>{copy.home.finalCtaText}</p>
+              <div className="page-cta-actions">
+                <Link className="button" href={locale === "en" ? "/en/contact" : "/contact"}>
+                  {copy.home.bookMeeting}<ArrowUpRight className="action-icon" size={14} aria-hidden="true" />
+                </Link>
+                <a className="button button-outline" href="/maquette/Maquette_site_SARC_Consulting.pdf" download>
+                  {copy.home.downloadBrochure}<ArrowDownToLine className="action-icon" size={14} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </section>
@@ -172,7 +276,7 @@ export default function LocalizedInteriorPage({ pageId, locale }: { pageId: Inte
 
   const page = site.pages[pageId];
   return (
-    <InteriorPage pageId={pageId} locale={locale} eyebrow={page.eyebrow} title={page.title} intro={page.intro} showContactCta={pageId !== "contact"}>
+    <InteriorPage pageId={pageId} locale={locale} eyebrow={page.eyebrow} title={page.title} intro={page.intro} showContactCta={pageId !== "contact" && pageId !== "cabinet"}>
       {pageContent}
     </InteriorPage>
   );
