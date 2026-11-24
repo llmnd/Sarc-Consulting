@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 import { ui, type Locale } from "@/content/ui";
@@ -15,8 +16,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
       <div className="footer-grid">
         <div>
           <Link className="brand" href={homePath} aria-label={copy.footer.brandHome}>
-            <span className="brand-mark" aria-hidden="true">S</span>
-            <span className="brand-name">SARC <small>CONSULTING</small></span>
+            <Image className="brand-logo brand-logo-light" src="/images/sarc-logo-light.png" alt="" width={268} height={75} />
           </Link>
           <p>{locale === "en" ? "Operational excellence in service of your success." : "L'excellence opérationnelle au service de vos réussites."}</p>
         </div>

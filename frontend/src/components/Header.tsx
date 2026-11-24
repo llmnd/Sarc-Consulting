@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
@@ -122,8 +123,7 @@ export default function Header({ locale }: { locale: Locale }) {
       <div className="progress" id="reading-progress" aria-hidden="true" />
       <header className={`site-header ${scrolled ? "scrolled" : ""} ${hidden && !open ? "hidden" : ""} ${open ? "menu-open" : ""}`}>
         <Link className="brand" href={homePath} aria-label={copy.brandHome}>
-          <span className="brand-mark" aria-hidden="true">S</span>
-          <span className="brand-name">SARC <small>CONSULTING</small></span>
+          <Image className="brand-logo brand-logo-dark" src="/images/sarc-logo-dark.png" alt="" width={268} height={75} priority />
         </Link>
         <div className="language-switch" aria-label={copy.languageLabel}>
           <Link className={`language-option ${locale === "fr" ? "active" : ""}`} href={frenchPath} lang="fr" aria-label="Français" aria-current={locale === "fr" ? "page" : undefined}><LanguageFlag locale="fr" /><span>FR</span></Link>
