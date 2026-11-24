@@ -110,10 +110,13 @@ export default function HomePage({ locale }: { locale: Locale }) {
           </div>
         </section>
         <section className="section container home-sectors" id="secteurs">
-          <Reveal className="section-heading"><span className="eyebrow">{home.sectors}</span><h2 className="serif">{home.sectorsTitle}</h2></Reveal>
+          <div className="sector-section-heading">
+            <span className="eyebrow">{home.sectors}</span>
+          </div>
           <SectorExplorer
             sectors={site.sectors}
             descriptions={site.sectorDetails}
+            headings={home.sectorHeadings}
             locale={locale}
             historicalExpertiseLabel={home.historicalSector}
           />

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import SeoStructuredData from "@/components/SeoStructuredData";
 import { siteUrl } from "@/config/seo";
@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     locale: "en_GB",
   },
   twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function EnglishRootLayout({

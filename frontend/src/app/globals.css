@@ -13,8 +13,8 @@
   --ease: cubic-bezier(.22,.61,.36,1);
 }
 * { box-sizing:border-box; }
-html { scroll-behavior:smooth; scroll-padding-top:84px; }
-body { margin:0; background:var(--paper); color:var(--ink); font-family:"DM Sans",sans-serif; -webkit-font-smoothing:antialiased; }
+html { width:100%; max-width:100%; overflow-x:clip; scroll-behavior:smooth; scroll-padding-top:84px; }
+body { width:100%; max-width:100%; margin:0; overflow-x:clip; background:var(--paper); color:var(--ink); font-family:"DM Sans",sans-serif; -webkit-font-smoothing:antialiased; }
 body.menu-open { overflow:hidden; }
 a { color:inherit; text-decoration:none; }
 button,input,select,textarea { font:inherit; }
@@ -197,8 +197,8 @@ main:focus { outline:none; }
 .commitment h3 { margin:12px 0 8px; font-family:"Playfair Display",serif; font-weight:400; }
 .commitment p { color:var(--text); font-size:13px; line-height:1.7; }
 .home-sectors { background:#f0eee8; }
-.home-sectors .section-heading { max-width:none; margin-bottom:30px; }
-.home-sectors .section-heading h2 { max-width:1000px; font-size:clamp(36px,4vw,52px); }
+.sector-section-heading { margin-bottom:18px; }
+.sector-section-title { max-width:1000px; min-height:1.12em; margin:18px 0 30px; color:var(--navy); font-size:clamp(36px,4vw,52px); line-height:1.06; animation:sectorPanelReveal .3s var(--ease) both; }
 .sector-list { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; }
 .sector-pill { display:inline-flex; min-height:42px; align-items:center; gap:9px; padding:9px 16px; border:1px solid var(--navy); border-radius:999px; background:transparent; color:var(--navy); font:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:background .2s,border-color .2s,color .2s,transform .2s,box-shadow .2s; }
 .sector-pill:hover { border-color:var(--gold); box-shadow:0 5px 16px rgba(14,29,60,.08); transform:translateY(-2px); }
@@ -398,8 +398,40 @@ main:focus { outline:none; }
   .form-bottom button { width:100%; }
   .site-footer { align-items:flex-start; flex-direction:column; }
 }
+@media (max-width:760px) {
+  .site-footer { width:100%; max-width:100%; padding:64px var(--gutter) 24px; overflow:hidden; }
+  .footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:38px 24px; padding-bottom:38px; }
+  .footer-grid>div { min-width:0; }
+  .footer-grid a,.footer-grid span { max-width:100%; overflow-wrap:anywhere; }
+  .footer-grid p { max-width:260px; }
+  .footer-bottom { align-items:flex-start; flex-direction:column; gap:18px; }
+  .footer-links { flex-wrap:wrap; gap:14px 18px; }
+  .footer-links a { max-width:100%; }
+  .home-final-cta { width:100%; }
+  .home-final-cta-content { width:100%; min-width:0; }
+}
+@media (max-width:420px) {
+  .footer-grid { grid-template-columns:minmax(0,1fr); gap:28px; }
+}
 @media (max-width:359px) {
   .hero h1 span { white-space:normal; }
+}
+@media (max-width:760px) {
+  .home-sectors { padding-inline:var(--gutter); }
+  .sector-section-title { max-width:100%; margin:14px 0 24px; font-size:clamp(38px,11vw,52px); line-height:.98; text-wrap:balance; }
+  .sector-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-bottom:16px; }
+  .sector-pill { min-height:48px; width:100%; justify-content:flex-start; padding:8px 10px; border-radius:999px; font-size:11px; line-height:1.25; }
+  .sector-pill.featured { grid-column:1/-1; justify-content:center; text-align:center; }
+  .sector-pill:last-child { grid-column:1/-1; width:calc(50% - 4px); justify-self:center; }
+  .sector-historical { display:block; }
+  .sector-explorer-panel { min-height:0; grid-template-columns:minmax(0,1fr); gap:18px; padding:22px 20px; }
+  .sector-panel-copy h3 { margin:10px 0 8px; font-size:30px; }
+  .sector-panel-copy p { font-size:14px; line-height:1.65; }
+  .sector-panel-visual { width:112px; height:112px; justify-self:start; }
+  .sector-panel-orbit-outer { width:82px; height:82px; }
+  .sector-panel-orbit-inner { width:58px; height:58px; }
+  .sector-panel-icon { width:32px; height:32px; }
+  .sector-panel-index { right:14px; bottom:12px; }
 }
 @media (min-width:480px) and (max-width:760px) {
   .hero-actions { flex-direction:row; gap:8px; }

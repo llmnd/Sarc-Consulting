@@ -24,11 +24,13 @@ const sectorIcons: LucideIcon[] = [
 export default function SectorExplorer({
   sectors,
   descriptions,
+  headings,
   locale,
   historicalExpertiseLabel,
 }: {
   sectors: readonly string[];
   descriptions: readonly string[];
+  headings: readonly string[];
   locale: Locale;
   historicalExpertiseLabel: string;
 }) {
@@ -36,9 +38,13 @@ export default function SectorExplorer({
   const SelectedIcon = sectorIcons[selectedIndex] ?? Building2;
   const selectedSector = sectors[selectedIndex];
   const selectedDescription = descriptions[selectedIndex];
+  const selectedHeading = headings[selectedIndex] ?? selectedSector;
 
   return (
     <div className="sector-explorer">
+      <h2 className="serif sector-section-title" key={`sector-heading-${selectedIndex}`} aria-live="polite">
+        {selectedHeading}
+      </h2>
       <div className="sector-list" role="group" aria-label={locale === "fr" ? "Choisir un secteur" : "Choose a sector"}>
         {sectors.map((sector, index) => {
           const Icon = sectorIcons[index] ?? Building2;

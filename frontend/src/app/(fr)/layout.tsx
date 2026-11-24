@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import SeoStructuredData from "@/components/SeoStructuredData";
 import { siteUrl } from "@/config/seo";
 import "../globals.css";
@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     locale: "fr_SN",
   },
   twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function FrenchRootLayout({
