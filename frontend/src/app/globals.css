@@ -257,6 +257,21 @@ main:focus { outline:none; }
 .footer-grid strong { margin-bottom:8px; color:var(--gold); font-size:10px; letter-spacing:.14em; text-transform:uppercase; }
 .footer-grid p { max-width:220px; color:var(--gold-soft); font-family:"Playfair Display",serif; font-size:14px; font-style:italic; line-height:1.6; }
 .footer-grid a:hover { color:white; }
+.footer-contact-details { display:flex; flex-direction:column; gap:7px; }
+.footer-location-card { position:relative; height:150px; margin-top:10px; overflow:hidden; border:1px solid rgba(255,255,255,.16); background:#f0eee8; }
+.footer-map-art { position:absolute; inset:0; overflow:hidden; background:linear-gradient(135deg,#f7f6f1,#e8e6df); }
+.footer-map-road { position:absolute; height:1px; background:rgba(14,29,60,.14); transform-origin:left center; }
+.footer-map-road-one { width:170%; left:-20px; top:38%; transform:rotate(-8deg); }
+.footer-map-road-two { width:140%; left:-30px; top:68%; transform:rotate(12deg); }
+.footer-map-road-three { width:180%; left:38%; top:-20px; transform:rotate(62deg); }
+.footer-map-district { position:absolute; right:10px; top:9px; color:rgba(14,29,60,.38); font-family:"Playfair Display",serif; font-size:10px; letter-spacing:.08em; }
+.footer-map-pin { position:absolute; left:50%; top:43%; display:grid; width:38px; height:38px; place-items:center; border:1px solid rgba(14,29,60,.12); border-radius:50%; background:var(--navy); color:white; box-shadow:0 8px 18px rgba(14,29,60,.18); transform:translate(-50%,-50%); }
+.footer-map-address { position:absolute; left:8px; right:8px; bottom:8px; display:flex; min-height:42px; flex-direction:column; justify-content:center; gap:2px; padding:7px 86px 7px 9px; background:rgba(255,255,255,.94); color:var(--navy); box-shadow:0 6px 18px rgba(14,29,60,.12); }
+.footer-map-address strong,.footer-map-address span { display:block; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.footer-map-address strong { font-size:9px; }
+.footer-map-address span { color:var(--text); font-size:8px; }
+.footer-map-link { position:absolute; right:8px; bottom:8px; display:inline-flex; min-height:34px; align-items:center; gap:7px; padding:7px 10px; background:var(--paper); color:var(--navy)!important; box-shadow:0 8px 24px rgba(0,0,0,.18); font-size:10px; font-weight:700; }
+.footer-map-link:hover { background:white; color:var(--navy)!important; }
 .footer-bottom { display:flex; align-items:center; justify-content:space-between; gap:20px; padding-top:26px; border-top:1px solid rgba(255,255,255,.12); }
 .footer-links { display:flex; gap:22px; }
 .footer-links a { display:inline-flex; align-items:center; gap:5px; }
@@ -379,7 +394,7 @@ main:focus { outline:none; }
   .sector-pill svg { width:14px; height:14px; }
   .sector-explorer-panel { min-height:0; grid-template-columns:minmax(0,1fr); gap:18px; padding:22px; }
   .sector-panel-copy h3 { font-size:30px; }
-  .sector-panel-visual { width:108px; justify-self:start; }
+  .sector-panel-visual { width:108px; justify-self:center; }
   .sector-panel-orbit-outer { width:82px; height:82px; }
   .sector-panel-orbit-inner { width:58px; height:58px; }
   .sector-panel-icon { width:32px; height:32px; }
@@ -411,6 +426,10 @@ main:focus { outline:none; }
   .home-final-cta-content { width:100%; min-width:0; }
 }
 @media (max-width:420px) {
+  .footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 16px; }
+  .footer-location-card { height:130px; }
+}
+@media (max-width:340px) {
   .footer-grid { grid-template-columns:minmax(0,1fr); gap:28px; }
 }
 @media (max-width:359px) {
@@ -427,7 +446,7 @@ main:focus { outline:none; }
   .sector-explorer-panel { min-height:0; grid-template-columns:minmax(0,1fr); gap:18px; padding:22px 20px; }
   .sector-panel-copy h3 { margin:10px 0 8px; font-size:30px; }
   .sector-panel-copy p { font-size:14px; line-height:1.65; }
-  .sector-panel-visual { width:112px; height:112px; justify-self:start; }
+  .sector-panel-visual { width:112px; height:112px; justify-self:center; }
   .sector-panel-orbit-outer { width:82px; height:82px; }
   .sector-panel-orbit-inner { width:58px; height:58px; }
   .sector-panel-icon { width:32px; height:32px; }
