@@ -29,12 +29,6 @@ export const site = {
       bio: "Juriste de formation, Aïssata BA SECK a créé SARC Consulting à Dakar avec la conviction que l'excellence opérationnelle n'a pas de frontières. Elle a conduit des activités autour des contrats et des dossiers de conformité dans le secteur de la santé.",
       portrait: null,
     },
-    {
-      name: "Stéphanie Roucou",
-      role: "Membre de l’équipe SARC Consulting",
-      bio: "Stéphanie Roucou fait partie de l’équipe de SARC Consulting.",
-      portrait: "/images/stephanie-roucou.webp",
-    },
   ] as Array<{ name: string; role: string; bio: string; portrait: string | null }>,
   cabinet: {
     title: "Une société sénégalaise, à l'aise avec tous les référentiels.",

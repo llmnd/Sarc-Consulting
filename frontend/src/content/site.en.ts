@@ -29,12 +29,6 @@ export const siteEn = {
       bio: "A lawyer by training, Aïssata BA SECK founded SARC Consulting in Dakar with the belief that operational excellence has no borders. She has managed contracts and compliance files in the healthcare sector.",
       portrait: null,
     },
-    {
-      name: "Stéphanie Roucou",
-      role: "Member of the SARC Consulting team",
-      bio: "Stéphanie Roucou is part of the SARC Consulting team.",
-      portrait: "/images/stephanie-roucou.webp",
-    },
   ] as Array<{ name: string; role: string; bio: string; portrait: string | null }>,
   cabinet: {
     title: "A Senegalese company comfortable with all standards.",
