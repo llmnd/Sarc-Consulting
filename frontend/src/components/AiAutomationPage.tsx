@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowDownToLine, ArrowUpRight } from "lucide-react";
 import InteriorPage from "@/components/InteriorPage";
 import Reveal from "@/components/Reveal";
+import TimeSavingsSimulator from "@/components/TimeSavingsSimulator";
 import { site as siteFr } from "@/content/site";
 import { siteEn } from "@/content/site.en";
 import { ui, type Locale } from "@/content/ui";
@@ -56,6 +57,8 @@ export default function AiAutomationPage({ locale }: { locale: Locale }) {
           </table>
         </Reveal>
       </section>
+
+      <TimeSavingsSimulator locale={locale} />
 
       <section className="section page-soft ai-formulas">
         <div className="container">
