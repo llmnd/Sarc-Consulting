@@ -30,6 +30,7 @@ import { ui, type Locale } from "@/content/ui";
 /* ------------------------------------------------------------------ */
 
 type GuideIntent =
+  | "method"
   | "estimate"
   | "value"
   | "pilot"
@@ -74,6 +75,7 @@ const PRESETS: Record<"small" | "team" | "large", Scenario> = {
 };
 
 const guideIntents: GuideIntent[] = [
+  "method",
   "estimate",
   "value",
   "pilot",
@@ -86,20 +88,22 @@ const guideIntents: GuideIntent[] = [
 ];
 
 const followUpMap: Record<GuideIntent, GuideIntent[]> = {
-  estimate: ["value", "pilot", "reliability"],
-  value: ["pilot", "price", "contact"],
+  method: ["value", "reliability", "pilot"],
+  estimate: ["method", "value", "pilot"],
+  value: ["method", "pilot", "contact"],
   pilot: ["workflows", "price", "contact"],
   workflows: ["pilot", "assistant", "privacy"],
-  reliability: ["estimate", "pilot", "contact"],
+  reliability: ["method", "pilot", "contact"],
   price: ["pilot", "value", "contact"],
   privacy: ["assistant", "reliability", "contact"],
   assistant: ["workflows", "privacy", "pilot"],
   contact: ["estimate", "workflows", "pilot"],
-  fallback: ["estimate", "workflows", "pilot"],
+  fallback: ["method", "workflows", "pilot"],
 };
 
 const guideKeywords: Record<Locale, Record<GuideIntent, string[]>> = {
   fr: {
+    method: ["comment c est calcule", "comment ca marche", "comment ca se calcule", "comment on calcule", "formule", "methode", "detail du calcul", "explique le calcul", "calcule", "multiplie", "operation"],
     estimate: ["calcul", "estimation", "projection", "resultat", "heure", "temps", "gain", "signifie", "optimisable", "part"],
     value: ["fcfa", "franc", "valeur", "argent", "rentab", "roi", "retour", "economie", "economies"],
     pilot: ["pilote", "commencer", "demarrer", "etape", "deployer", "priorite"],
@@ -112,6 +116,7 @@ const guideKeywords: Record<Locale, Record<GuideIntent, string[]>> = {
     fallback: [],
   },
   en: {
+    method: ["how is it calculated", "how it is calculated", "how does it work", "how do you calculate", "work out", "formula", "method", "calculation details", "calculated", "multiply", "step by step"],
     estimate: ["calculate", "estimate", "projection", "result", "hours", "time", "saving", "mean", "optimisable", "optimizable", "percentage", "share"],
     value: ["fcfa", "franc", "value", "money", "worth", "roi", "return", "profitable"],
     pilot: ["pilot", "start", "begin", "step", "rollout", "prioritise", "prioritize"],
@@ -128,6 +133,8 @@ const guideKeywords: Record<Locale, Record<GuideIntent, string[]>> = {
 /* Textes ajoutés par cette version (le reste continue de venir de ui.ts) */
 const extra = {
   fr: {
+    askMethod: "Comment est-ce calculé ?",
+    showCalculation: "Voir le calcul détaillé",
     presetsLabel: "Point de départ",
     presets: { small: "Petite équipe", team: "Cabinet", large: "Grande structure" },
     costLabel: "Valeur d’une heure",
@@ -153,6 +160,7 @@ const extra = {
     chatTyping: "Le guide rédige une réponse",
     chatFollowUp: "Pour aller plus loin",
     topics: {
+      method: "Comment est-ce calculé ?",
       estimate: "Comprendre mon résultat",
       value: "Combien cela représente-t-il ?",
       pilot: "Démarrer un pilote",
@@ -164,12 +172,18 @@ const extra = {
       contact: "Parler à un consultant",
       fallback: "",
     } as Record<GuideIntent, string>,
+    methodAnswer:
+      "Voici le calcul, avec vos chiffres :\n\n1. Par personne : {hours} h × {share} % = {perPerson} h récupérables par semaine.\n2. Pilote : {pilot} personnes × {perPerson} h = {pilotHours} h par semaine.\n3. Équipe entière : {org} personnes × {perPerson} h = {orgHours} h par semaine.\n4. Par an : {orgHours} h × 46 semaines = {yearHours} h, soit environ {monthHours} h par mois.\n5. Temps plein : {orgHours} h ÷ 40 h = {fte} poste.\n6. {valueStep}\n\nOn compte 46 semaines (et non 52) pour tenir compte des congés et des jours fériés, et 40 h correspond à une semaine de travail complète.",
+    methodValueStep: "Valeur : {yearHours} h × {cost} FCFA = {value} FCFA par an.",
+    methodNoValueStep: "Valeur : indiquez la valeur d’une heure dans le simulateur pour obtenir ce montant.",
     valueAnswer:
       "En valorisant une heure à {cost} FCFA, le pilote représente environ {pilot} FCFA par an et l’équipe entière environ {org} FCFA. C’est un temps libéré, pas une économie garantie : tout dépend de ce que vos équipes en font.",
     valueEmptyAnswer:
       "Réglez « Valeur d’une heure » dans le simulateur : j’en déduirai la valeur annuelle du temps récupéré, pour le pilote comme pour toute l’équipe.",
   },
   en: {
+    askMethod: "How is it calculated?",
+    showCalculation: "See the full calculation",
     presetsLabel: "Starting point",
     presets: { small: "Small team", team: "Firm", large: "Large organisation" },
     costLabel: "Value of one hour",
@@ -195,6 +209,7 @@ const extra = {
     chatTyping: "The guide is writing a reply",
     chatFollowUp: "Keep exploring",
     topics: {
+      method: "How is it calculated?",
       estimate: "Understand my result",
       value: "What does that amount to?",
       pilot: "Start a pilot",
@@ -206,6 +221,10 @@ const extra = {
       contact: "Speak to a consultant",
       fallback: "",
     } as Record<GuideIntent, string>,
+    methodAnswer:
+      "Here is the calculation, with your numbers:\n\n1. Per person: {hours} h × {share}% = {perPerson} h recoverable per week.\n2. Pilot: {pilot} people × {perPerson} h = {pilotHours} h per week.\n3. Whole team: {org} people × {perPerson} h = {orgHours} h per week.\n4. Per year: {orgHours} h × 46 weeks = {yearHours} h, about {monthHours} h per month.\n5. Full-time: {orgHours} h ÷ 40 h = {fte} position.\n6. {valueStep}\n\nWe count 46 weeks (not 52) to allow for leave and public holidays, and 40 h is a full working week.",
+    methodValueStep: "Value: {yearHours} h × {cost} FCFA = {value} FCFA per year.",
+    methodNoValueStep: "Value: set the value of one hour in the simulator to get this amount.",
     valueAnswer:
       "Valuing one hour at {cost} FCFA, the pilot is worth about {pilot} FCFA a year and the whole team about {org} FCFA. This is time freed up, not a guaranteed saving: it depends on what your people do with it.",
     valueEmptyAnswer:
@@ -484,6 +503,27 @@ export default function TimeSavingsSimulator({ locale }: { locale: Locale }) {
         .replace("{additional}", numberFormat.format(additionalHours));
     }
 
+    if (intent === "method") {
+      const shared = {
+        cost: integerFormat.format(cost),
+        yearHours: integerFormat.format(Math.round(yearlyHours)),
+        value: integerFormat.format(Math.round(organizationYearValue)),
+      };
+      return fill(more.methodAnswer, {
+        hours: numberFormat.format(hours),
+        share: String(share),
+        perPerson: numberFormat.format(potentialPerPerson),
+        pilot: String(pilot),
+        pilotHours: numberFormat.format(pilotHours),
+        org: String(organization),
+        orgHours: numberFormat.format(organizationHours),
+        monthHours: integerFormat.format(Math.round(monthlyHours)),
+        fte: numberFormat.format(fullTimeEquivalents),
+        yearHours: shared.yearHours,
+        valueStep: hasValue ? fill(more.methodValueStep, shared) : more.methodNoValueStep,
+      });
+    }
+
     if (intent === "value") {
       return hasValue
         ? fill(more.valueAnswer, {
@@ -548,6 +588,7 @@ export default function TimeSavingsSimulator({ locale }: { locale: Locale }) {
   };
 
   const starterPrompts: Array<{ intent: GuideIntent; label: string }> = [
+    { intent: "method", label: more.askMethod },
     { intent: "estimate", label: assistantCopy.askEstimate },
     { intent: "pilot", label: assistantCopy.askPilot },
     { intent: "workflows", label: assistantCopy.askWorkflows },
@@ -738,6 +779,17 @@ export default function TimeSavingsSimulator({ locale }: { locale: Locale }) {
                 {copy.cta}
                 <ArrowUpRight className="action-icon" size={14} aria-hidden="true" />
               </Link>
+              <button
+                type="button"
+                className="ai-savings-ghost"
+                onClick={() => {
+                  setAssistantOpen(true);
+                  sendQuestion(more.askMethod, "method");
+                }}
+              >
+                <MessageCircle size={15} aria-hidden="true" />
+                {more.showCalculation}
+              </button>
               <button type="button" className="ai-savings-ghost" onClick={copySummary}>
                 {copied ? <Check size={15} aria-hidden="true" /> : <Copy size={15} aria-hidden="true" />}
                 {copied ? more.copied : more.copy}
