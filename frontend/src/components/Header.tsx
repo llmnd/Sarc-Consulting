@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FocusEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Plus, Search, UserRound } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Plus, Search, UserRound } from "lucide-react";
 import { site as siteFr } from "@/content/site";
 import { siteEn } from "@/content/site.en";
 import { ui, type Locale } from "@/content/ui";
@@ -29,17 +29,26 @@ function LanguageFlag({ locale }: { locale: Locale }) {
 
 export default function Header({ locale }: { locale: Locale }) {
   const [open,setOpen] = useState(false);
+  const [exploreOpen,setExploreOpen] = useState(false);
   const [searchOpen,setSearchOpen] = useState(false);
   const [searchValue,setSearchValue] = useState("");
   const [scrolled,setScrolled] = useState(false);
   const [hidden,setHidden] = useState(false);
   const lastY = useRef(0);
   const menuRef = useRef<HTMLButtonElement>(null);
+  const exploreTriggerRef = useRef<HTMLButtonElement>(null);
+  const exploreDismissedRef = useRef(false);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const site = locale === "en" ? siteEn : siteFr;
   const copy = ui[locale];
   const homePath = locale === "en" ? "/en" : "/";
+  const explorePaths = new Set(locale === "en"
+    ? ["/en/approach", "/en/sectors", "/en/news", "/en/contact"]
+    : ["/methode", "/secteurs", "/actualites", "/contact"]);
+  const mainNavLinks = site.nav.filter(([, path]) => !explorePaths.has(path));
+  const exploreLinks = site.nav.filter(([, path]) => explorePaths.has(path));
+  const exploreIsActive = exploreLinks.some(([, path]) => pathname === path);
   const localizedRoutes = [["a-propos", "about"], ["prestations", "expertise"], ["ia-automatisation", "ai-automation"], ["methode", "approach"], ["secteurs", "sectors"], ["actualites", "news"], ["engagements", "commitments"], ["contact", "contact"], ["cabinet", "about"], ["expertises", "expertise"], ["approche", "approach"]] as const;
   const routeWithoutLocale = pathname === "/en" ? "" : pathname.startsWith("/en/") ? pathname.slice(4) : pathname.slice(1);
   const routePair = localizedRoutes.find(([french, english]) => routeWithoutLocale === french || routeWithoutLocale === english);
@@ -47,6 +56,8 @@ export default function Header({ locale }: { locale: Locale }) {
   const englishPath = pathname === "/" || pathname === "/en" ? "/en" : pathname.startsWith("/en/") ? pathname : `/en/${routePair?.[1] ?? routeWithoutLocale}`;
 
   useEffect(() => {
+    exploreDismissedRef.current = false;
+    setExploreOpen(false);
     document.documentElement.lang = locale;
     const progress = document.getElementById("reading-progress");
     lastY.current = 0;
@@ -67,6 +78,14 @@ export default function Header({ locale }: { locale: Locale }) {
     onScroll();
     return () => window.removeEventListener("scroll",onScroll);
   },[pathname, locale]);
+
+  const handleExploreBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (!(event.relatedTarget instanceof Node) || !event.currentTarget.contains(event.relatedTarget)) {
+      const pointerInside = event.currentTarget.matches(":hover");
+      exploreDismissedRef.current = false;
+      setExploreOpen(pointerInside);
+    }
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -129,7 +148,49 @@ export default function Header({ locale }: { locale: Locale }) {
           <Image className="brand-logo brand-logo-dark" src="/images/sarc-logo-dark.png" alt="" width={268} height={75} priority />
         </Link>
         <nav className="main-nav" id="navigation" aria-label={copy.navLabel}>
-          {site.nav.map(([label,path]) => <Link className={pathname===path ? "active" : ""} href={path} key={path}>{label}</Link>)}
+          {mainNavLinks.map(([label,path]) => <Link className={pathname===path ? "active" : ""} href={path} key={path}>{label}</Link>)}
+          <div
+            className={`nav-dropdown ${exploreOpen ? "open" : ""}`}
+            onMouseEnter={() => {exploreDismissedRef.current = false; setExploreOpen(true);}}
+            onMouseLeave={(event) => setExploreOpen(!exploreDismissedRef.current && event.currentTarget.matches(":focus-within"))}
+            onFocusCapture={() => {
+              if (!exploreDismissedRef.current) setExploreOpen(true);
+            }}
+            onBlur={handleExploreBlur}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                event.preventDefault();
+                exploreDismissedRef.current = true;
+                setExploreOpen(false);
+                exploreTriggerRef.current?.focus();
+              }
+            }}
+          >
+            <button
+              ref={exploreTriggerRef}
+              className={`nav-dropdown-trigger ${exploreIsActive ? "active" : ""}`}
+              type="button"
+              aria-expanded={exploreOpen}
+              aria-controls="desktop-explore-menu"
+              onClick={() => {exploreDismissedRef.current = false; setExploreOpen(true);}}
+            >
+              {copy.navExplore}
+              <ChevronDown className="nav-dropdown-chevron" size={14} aria-hidden="true" />
+            </button>
+            <div className="nav-dropdown-menu" id="desktop-explore-menu" aria-hidden={!exploreOpen}>
+              {exploreLinks.map(([label,path]) => (
+                <Link
+                  className={pathname===path ? "active" : ""}
+                  href={path}
+                  key={path}
+                  onClick={() => setExploreOpen(false)}
+                >
+                  {label}
+                  <ArrowUpRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                </Link>
+              ))}
+            </div>
+          </div>
         </nav>
         <Link className={`nav-cta header-nav-cta ${pathname=== (locale === "en" ? "/en/contact" : "/contact") ? "active" : ""}`} href={locale === "en" ? "/en/contact" : "/contact"}>{copy.navCta} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
         <div className="language-switch" aria-label={copy.languageLabel}>
@@ -138,7 +199,7 @@ export default function Header({ locale }: { locale: Locale }) {
         </div>
         <button ref={menuRef} className={`menu-toggle ${open ? "open" : ""}`} type="button"
           aria-label={open ? copy.closeMenu : copy.openMenu} aria-expanded={open} aria-controls="mobile-navigation"
-          onClick={()=>setOpen(v=>!v)}><span/><span/></button>
+          onClick={()=>{setOpen(v=>!v);setExploreOpen(false);exploreDismissedRef.current=false;}}><span/><span/></button>
         <div className="header-utility" aria-label="Liens secondaires">
           <a
             className="header-linkedin"
@@ -211,8 +272,34 @@ export default function Header({ locale }: { locale: Locale }) {
         aria-hidden={!open}
         onClick={(event)=>{if(event.target===event.currentTarget)setOpen(false);}}
       >
-        {site.nav.map(([label,path],index) => <Link className={pathname===path ? "active" : ""} style={{transitionDelay:open ? `${index*55}ms` : "0ms"}} href={path} key={path} onClick={()=>setOpen(false)}>{label}</Link>)}
-        <Link className="nav-cta" href={locale === "en" ? "/en/contact" : "/contact"} onClick={()=>setOpen(false)}>{copy.navCta} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
+        {mainNavLinks.map(([label,path],index) => <Link className={pathname===path ? "active" : ""} style={{transitionDelay:open ? `${index*55}ms` : "0ms"}} href={path} key={path} onClick={()=>{setOpen(false);setExploreOpen(false);}}>{label}</Link>)}
+        <div className="mobile-explore-group">
+          <button
+            className={`mobile-explore-toggle ${exploreIsActive ? "active" : ""}`}
+            type="button"
+            aria-expanded={exploreOpen}
+            aria-controls="mobile-explore-links"
+            style={{transitionDelay:open ? `${mainNavLinks.length*55}ms` : "0ms"}}
+            onClick={() => setExploreOpen((value) => !value)}
+          >
+            {copy.navExplore}
+            <ChevronDown size={20} aria-hidden="true" />
+          </button>
+          <div className="mobile-explore-links" id="mobile-explore-links" hidden={!exploreOpen}>
+            {exploreLinks.map(([label,path],index) => (
+              <Link
+                className={pathname===path ? "active" : ""}
+                style={{transitionDelay:open && exploreOpen ? `${(mainNavLinks.length+index+1)*45}ms` : "0ms"}}
+                href={path}
+                key={path}
+                onClick={() => {setOpen(false); setExploreOpen(false);}}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <Link className="nav-cta" href={locale === "en" ? "/en/contact" : "/contact"} onClick={()=>{setOpen(false);setExploreOpen(false);}}>{copy.navCta} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
       </nav>
     </>
   );

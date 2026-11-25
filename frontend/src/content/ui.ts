@@ -7,6 +7,7 @@ export const ui = {
     closeMenu: "Fermer le menu",
     brandHome: "SARC Consulting, accueil",
     languageLabel: "Langue",
+    navExplore: "Explorer",
     navCta: "Parlons de vos enjeux",
     home: {
       heroTitleFirst: "Votre back-office",
@@ -101,6 +102,7 @@ export const ui = {
     closeMenu: "Close menu",
     brandHome: "SARC Consulting, home",
     languageLabel: "Language",
+    navExplore: "Explore",
     navCta: "Let's discuss your priorities",
     home: {
       heroTitleFirst: "Your back office",
