@@ -279,7 +279,7 @@ main:focus { outline:none; }
 .form-bottom button { min-height:48px; display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; background:var(--gold); color:var(--navy); padding-inline:18px; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; }
 .form-message { color:var(--gold-soft); min-height:20px; }
 .honeypot { position:absolute; left:-10000px; }
-.site-footer { display:flex; align-items:center; justify-content:space-between; gap:20px; padding-block:28px; background:var(--navy); color:rgba(255,255,255,.55); font-size:10px; }
+.site-footer { display:flex; align-items:center; justify-content:space-between; gap:20px; padding-block:28px; background:#08162b; color:rgba(255,255,255,.55); font-size:10px; }
 .site-footer .brand-logo { width:156px; }
 .site-footer { display:block; padding-block:72px 28px; }
 .footer-grid { display:grid; grid-template-columns:1.4fr 1fr 1fr 1.15fr; gap:48px; padding-bottom:48px; }
@@ -530,7 +530,7 @@ main:focus { outline:none; }
 .ai-formula-card>span { color:#9a7d50; font-family:"Playfair Display",serif; font-size:24px; }
 .ai-formula-card h3 { margin:18px 0 10px; color:var(--navy); font-family:"Playfair Display",serif; font-size:21px; font-weight:400; line-height:1.25; }
 .ai-formula-card p { margin:0; color:var(--text); font-size:14px; line-height:1.65; }
-.ai-guarantees { background:var(--navy); color:white; }
+.ai-guarantees { background:#0E1D3C!important; background-color:#0E1D3C!important; color:white; }
 .ai-guarantees .eyebrow { color:var(--gold); }
 .ai-guarantees .section-heading h2 { color:white; }
 .ai-guarantee-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:26px; }
@@ -596,6 +596,7 @@ main:focus { outline:none; }
 .commitment-page-card p { max-width:440px; line-height:1.8; }
 .commitment-page-card small { color:rgba(255,255,255,.55); line-height:1.7; }
 .page-cta { padding:90px var(--gutter); background:var(--navy); color:white; }
+.ai-final-cta { background:#0E1D3C!important; background-color:#0E1D3C!important; border-top:0; }
 .page-cta-content { max-width:1120px; margin-inline:auto; }
 .page-cta .eyebrow { color:var(--gold-soft); }
 .page-cta h2 { margin:20px 0 12px; font-size:clamp(42px,5vw,64px); }

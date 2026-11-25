@@ -75,7 +75,7 @@ export default function AiAutomationPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section ai-guarantees">
+      <section className="section ai-guarantees" style={{ backgroundColor: "#0E1D3C" }}>
         <div className="container">
           <Reveal className="section-heading">
             <span className="eyebrow">{page.guaranteesEyebrow}</span>
