@@ -128,6 +128,10 @@ export default function Header({ locale }: { locale: Locale }) {
         <Link className="brand" href={homePath} aria-label={copy.brandHome}>
           <Image className="brand-logo brand-logo-dark" src="/images/sarc-logo-dark.png" alt="" width={268} height={75} priority />
         </Link>
+        <nav className="main-nav" id="navigation" aria-label={copy.navLabel}>
+          {site.nav.map(([label,path]) => <Link className={pathname===path ? "active" : ""} href={path} key={path}>{label}</Link>)}
+        </nav>
+        <Link className={`nav-cta header-nav-cta ${pathname=== (locale === "en" ? "/en/contact" : "/contact") ? "active" : ""}`} href={locale === "en" ? "/en/contact" : "/contact"}>{copy.navCta} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
         <div className="language-switch" aria-label={copy.languageLabel}>
           <Link className={`language-option ${locale === "fr" ? "active" : ""}`} href={frenchPath} lang="fr" aria-label="Français" aria-current={locale === "fr" ? "page" : undefined}><LanguageFlag locale="fr" /><span>FR</span></Link>
           <Link className={`language-option ${locale === "en" ? "active" : ""}`} href={englishPath} lang="en" aria-label="English" aria-current={locale === "en" ? "page" : undefined}><LanguageFlag locale="en" /><span>EN</span></Link>
@@ -135,10 +139,6 @@ export default function Header({ locale }: { locale: Locale }) {
         <button ref={menuRef} className={`menu-toggle ${open ? "open" : ""}`} type="button"
           aria-label={open ? copy.closeMenu : copy.openMenu} aria-expanded={open} aria-controls="mobile-navigation"
           onClick={()=>setOpen(v=>!v)}><span/><span/></button>
-        <nav className="main-nav" id="navigation" aria-label={copy.navLabel}>
-          {site.nav.map(([label,path]) => <Link className={pathname===path ? "active" : ""} href={path} key={path}>{label}</Link>)}
-          <Link className={`nav-cta ${pathname=== (locale === "en" ? "/en/contact" : "/contact") ? "active" : ""}`} href={locale === "en" ? "/en/contact" : "/contact"}>{copy.navCta} <ArrowUpRight className="action-icon" size={14} strokeWidth={1.8} aria-hidden="true" /></Link>
-        </nav>
         <div className="header-utility" aria-label="Liens secondaires">
           <a
             className="header-linkedin"
